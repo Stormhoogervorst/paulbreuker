@@ -71,15 +71,15 @@ const faqSchema = {
   <script slot="schema" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 
   <!-- // SECTIE 1: HERO -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60 mb-12">
       Promotiefotografie · Radboud Universiteit Nijmegen
     </p>
-    <div class="grid grid-cols-12 gap-8 md:gap-16 items-end">
-      <h1 class="col-span-12 md:col-span-8 text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05]">
-        Voor het moment dat hora est klinkt.
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16 items-end">
+      <h1 class="md:col-span-8 text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05]">
+        De fotograaf voor je promotie.
       </h1>
-      <p class="col-span-12 md:col-span-4 text-[17px] leading-[1.55] md:pb-3">
+      <p class="md:col-span-4 text-[17px] leading-[1.55] md:pb-3">
         Ingetogen, vakkundig vastgelegd. Door iemand die het Radboud-protocol kent.
       </p>
     </div>
@@ -97,11 +97,11 @@ const faqSchema = {
   </section>
 
   <!-- // SECTIE 2: STATEMENT -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Specialisme</p>
       <div>
-        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Fotografie van Radboud promoties.
         </h2>
         <p class="mt-8 max-w-3xl text-[17px] leading-[1.55]">
@@ -114,10 +114,10 @@ const faqSchema = {
   </section>
 
   <!-- // SECTIE 3: PORTFOLIO TEASER -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Eerder werk</p>
-      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Een selectie uit recente promoties
       </h2>
     </div>
@@ -167,7 +167,7 @@ const faqSchema = {
         <div class="md:col-span-5 order-1">
           <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Over mij</p>
           <h2 class="mt-6 text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.1] uppercase break-words">
-            Ik ken het Radboud-protocol als geen ander
+            Een fotograaf die het ritueel kent.
           </h2>
           <div class="mt-8 space-y-5">
             <p class="text-[15px] md:text-[17px] leading-relaxed">
@@ -201,17 +201,17 @@ const faqSchema = {
   </section>
 
   <!-- // SECTIE 5: HOE HET WERKT -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Het proces</p>
-      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Van eerste contact tot levering
       </h2>
     </div>
       <ol class="mt-16 grid border-y border-ink md:grid-cols-4 md:divide-x md:divide-ink">
         <li class="py-8 md:px-8">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">01</span>
-          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight">Aanvraag</h3>
+          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">Aanvraag</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
             Een korte mailwisseling om datum, locatie en eventuele wensen af te stemmen. Geen
             verplicht gesprek vooraf.
@@ -219,14 +219,14 @@ const faqSchema = {
         </li>
         <li class="py-8 md:px-8">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">02</span>
-          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight">Bevestiging</h3>
+          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">Bevestiging</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
             Datum vast, details afgestemd. Geen aanbetaling vooraf.
           </p>
         </li>
         <li class="py-8 md:px-8">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">03</span>
-          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight">De dag zelf</h3>
+          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">De dag zelf</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
             Ik ben dertig minuten voor aanvang aanwezig en werk twee uur door, van zweetkamertje
             tot eerste felicitaties.
@@ -234,7 +234,7 @@ const faqSchema = {
         </li>
         <li class="py-8 md:px-8">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">04</span>
-          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight">Levering</h3>
+          <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">Levering</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
             Binnen twee weken ontvang je honderd zorgvuldig geselecteerde en nabewerkte foto's via
             een persoonlijke online galerij.
@@ -243,57 +243,12 @@ const faqSchema = {
       </ol>
   </section>
 
-  <!-- // SECTIE 6: REVIEWS -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
-    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
-      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Wat eerdere promovendi zeggen</p>
-      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
-        Vertrouwd door collega's uit veel faculteiten
-      </h2>
-    </div>
-      <div class="mt-16 grid border-y border-ink md:grid-cols-3 md:divide-x md:divide-ink">
-        <blockquote class="py-8 md:px-8">
-          <span class="text-6xl leading-none">"</span>
-          <p class="mt-4 text-[17px] leading-[1.55]">
-            Op een dag waarop alles snel gaat, bracht de fotografie juist rust. Ik merkte bijna
-            niet dat er iemand aanwezig was, maar de belangrijke momenten staan er precies op. De
-            beelden voelen ingetogen en persoonlijk.
-          </p>
-          <p class="mt-8 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
-            Anna de Vries · Faculteit der Letteren · 2024
-          </p>
-        </blockquote>
-        <blockquote class="py-8 md:px-8">
-          <span class="text-6xl leading-none">"</span>
-          <p class="mt-4 text-[17px] leading-[1.55]">
-            Vooral de foto's rond de verdediging en de eerste felicitaties zijn heel waardevol.
-            Er was aandacht voor mijn familie, mijn paranimfen en de sfeer in de Aula. Het
-            resultaat is professioneel zonder afstandelijk te worden.
-          </p>
-          <p class="mt-8 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
-            Mehmet Yıldız · Faculteit der Sociale Wetenschappen · 2024
-          </p>
-        </blockquote>
-        <blockquote class="py-8 md:px-8">
-          <span class="text-6xl leading-none">"</span>
-          <p class="mt-4 text-[17px] leading-[1.55]">
-            De dag zelf was spannend, maar de fotografie vroeg geen aandacht van mij. Later zag ik
-            pas hoeveel kleine reacties en blikken waren vastgelegd. De galerij kwam snel en was
-            zorgvuldig samengesteld.
-          </p>
-          <p class="mt-8 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
-            Sophie Janssen · Faculteit der Medische Wetenschappen · 2025
-          </p>
-        </blockquote>
-      </div>
-  </section>
-
   <!-- // SECTIE 7: INVESTERING -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Investering</p>
       <div>
-        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Het pakket. Helder geprijsd.
         </h2>
         <p class="mt-8 max-w-2xl text-[17px] leading-[1.55]">
@@ -301,7 +256,7 @@ const faqSchema = {
         aanwezigheid op je promotiedag, honderd zorgvuldig nabewerkte foto's, geleverd binnen twee
         weken via een persoonlijke online galerij. Reiskosten binnen Nijmegen en BTW inbegrepen.
         </p>
-        <div class="mt-10 inline-flex items-baseline gap-3 border-y border-ink py-6 pr-12">
+        <div class="mt-10 inline-flex flex-wrap items-baseline gap-3 border-y border-ink py-6 pr-6 md:pr-12">
           <span class="text-5xl font-medium leading-none tracking-[-0.02em]">€300</span>
           <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">alles inbegrepen</span>
         </div>
@@ -316,10 +271,10 @@ const faqSchema = {
   </section>
 
   <!-- // SECTIE 8: FAQ -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Veelgestelde vragen</p>
-      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Goed om vooraf te weten
       </h2>
     </div>
@@ -341,9 +296,9 @@ const faqSchema = {
   </section>
 
   <!-- // SECTIE 9: SLOT -->
-  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="border-y border-ink py-16 text-center">
-      <h2 class="mx-auto max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+      <h2 class="mx-auto max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
         Klaar om je datum te reserveren?
       </h2>
       <p class="mx-auto mt-8 max-w-xl text-[17px] leading-[1.55]">
