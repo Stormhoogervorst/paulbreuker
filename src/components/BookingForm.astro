@@ -1,0 +1,49 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Plan een kennismaking.',
+  description = 'Stuur je datum, faculteit en eventuele wensen. Ik reageer binnen vierentwintig uur met beschikbaarheid en vervolgstappen.',
+} = Astro.props;
+---
+
+<section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <div class="grid gap-12 border-t border-ink pt-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-16">
+    <div>
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Contact</p>
+      <h1 class="mt-6 max-w-2xl text-5xl font-medium leading-none tracking-[-0.02em] md:text-7xl">
+        {title}
+      </h1>
+      <p class="mt-8 max-w-xl text-[17px] leading-[1.55]">{description}</p>
+    </div>
+
+    <form class="grid gap-6 border-t border-ink pt-8 lg:border-t-0 lg:pt-0" method="post">
+      <label class="grid gap-3">
+        <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Naam</span>
+        <input class="rounded-[10px] border border-ink bg-transparent px-4 py-4 font-sans text-base normal-case tracking-normal outline-none focus:bg-ink focus:text-cream" type="text" name="name" autocomplete="name" required />
+      </label>
+      <label class="grid gap-3">
+        <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">E-mail</span>
+        <input class="rounded-[10px] border border-ink bg-transparent px-4 py-4 font-sans text-base normal-case tracking-normal outline-none focus:bg-ink focus:text-cream" type="email" name="email" autocomplete="email" required />
+      </label>
+      <label class="grid gap-3">
+        <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Promotiedatum</span>
+        <input class="rounded-[10px] border border-ink bg-transparent px-4 py-4 font-sans text-base normal-case tracking-normal outline-none focus:bg-ink focus:text-cream" type="date" name="date" />
+      </label>
+      <label class="grid gap-3">
+        <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Faculteit</span>
+        <input class="rounded-[10px] border border-ink bg-transparent px-4 py-4 font-sans text-base normal-case tracking-normal outline-none focus:bg-ink focus:text-cream" type="text" name="faculty" />
+      </label>
+      <label class="grid gap-3">
+        <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Bericht</span>
+        <textarea class="min-h-40 rounded-[10px] border border-ink bg-transparent px-4 py-4 font-sans text-base normal-case tracking-normal outline-none focus:bg-ink focus:text-cream" name="message" required></textarea>
+      </label>
+      <button class="w-fit inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:opacity-90 transition" type="submit">
+        Verstuur aanvraag
+      </button>
+    </form>
+  </div>
+</section>

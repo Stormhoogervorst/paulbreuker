@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import foto1 from '../../assets/portfolio/foto-1.jpg';
+import foto3 from '../../assets/portfolio/foto-3.jpg';
+---
+
+<BaseLayout
+  title="PhD Defence Photography at Radboud University"
+  description="Quiet, professional photography for your PhD defence at Radboud University Nijmegen. Familiar with the Radboud protocol."
+  lang="en"
+  alternateUrl="https://fotograafpromotieradboud.nl/"
+  image="/og-home.jpg"
+>
+  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.58fr_0.42fr] lg:items-end">
+      <div>
+        <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+          PhD defence photography · Radboud University Nijmegen
+        </p>
+        <h1 class="mt-8 max-w-5xl text-6xl font-medium leading-none tracking-[-0.02em] md:text-8xl lg:text-9xl">
+          One day you cannot repeat.
+        </h1>
+      </div>
+      <div class="lg:pb-3">
+        <p class="max-w-md text-[17px] leading-[1.55]">
+          Quiet, professional photography by someone familiar with the rhythm and protocol of a
+          Radboud PhD defence.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-8 py-4 rounded-[10px] hover:opacity-90 transition"
+        >
+          Request availability
+        </a>
+      </div>
+    </div>
+    <div class="mt-12 overflow-hidden rounded-2xl">
+      <Image
+        src={foto1}
+        alt="PhD defence at Radboud University Nijmegen"
+        class="aspect-[16/10] w-full rounded-2xl object-cover"
+        widths={[800, 1200, 1920, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+    <div class="grid gap-12 border-t border-ink pt-10 lg:grid-cols-2 lg:gap-16">
+      <div>
+        <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Package</p>
+        <h2 class="mt-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+          A clear offer for international PhD candidates.
+        </h2>
+        <p class="mt-8 max-w-xl text-[17px] leading-[1.55]">
+          The package includes two hours of photography, one hundred carefully edited photographs
+          and delivery within two weeks through a personal online gallery.
+        </p>
+        <div class="mt-10 inline-flex items-baseline gap-3 border-y border-ink py-6 pr-12">
+          <span class="text-5xl font-medium leading-none tracking-[-0.02em]">€300</span>
+          <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">all included</span>
+        </div>
+      </div>
+      <div class="overflow-hidden rounded-2xl">
+        <Image
+          src={foto3}
+          alt="Moment after the PhD diploma ceremony at Radboud University"
+          class="aspect-[4/5] w-full rounded-2xl object-cover"
+          widths={[400, 800, 1200]}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+        />
+      </div>
+    </div>
+  </section>
+</BaseLayout>

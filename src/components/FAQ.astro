@@ -1,0 +1,34 @@
+---
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FAQItem[];
+  title?: string;
+  eyebrow?: string;
+}
+
+const { items, title = 'Goed om vooraf te weten.', eyebrow = 'Veelgestelde vragen' } = Astro.props;
+---
+
+<section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+    <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{eyebrow}</p>
+    <h2 class="max-w-3xl text-4xl font-medium uppercase leading-none md:text-7xl">{title}</h2>
+  </div>
+  <div class="mt-16 divide-y divide-ink border-y border-ink">
+    {items.map((item) => (
+      <details class="group">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-8 py-6 text-xl font-medium transition hover:opacity-60 md:text-2xl">
+          {item.question}
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink font-mono text-[13px] transition-transform group-open:rotate-45">
+            +
+          </span>
+        </summary>
+        <p class="max-w-3xl pb-6 text-[17px] leading-[1.55]">{item.answer}</p>
+      </details>
+    ))}
+  </div>
+</section>

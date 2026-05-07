@@ -1,0 +1,28 @@
+---
+interface Props {
+  title: string;
+  price: string;
+  description: string;
+  features: string[];
+  ctaLabel?: string;
+  ctaHref?: string;
+}
+
+const { title, price, description, features, ctaLabel = 'Boek dit pakket', ctaHref = '/contact' } = Astro.props;
+---
+
+<article class="border-t border-ink pt-8">
+  <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Aanbod</p>
+  <h2 class="mt-5 text-4xl font-medium uppercase leading-none md:text-6xl">{title}</h2>
+  <div class="mt-8 flex items-baseline gap-3 border-y border-ink py-6">
+    <p class="text-5xl font-medium leading-none tracking-[-0.02em]">{price}</p>
+    <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">alles inbegrepen</p>
+  </div>
+  <p class="mt-8 text-[17px] leading-[1.55]">{description}</p>
+  <ul class="mt-8 divide-y divide-ink border-y border-ink font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+    {features.map((feature) => <li class="flex gap-4 py-4"><span aria-hidden="true">+</span><span>{feature}</span></li>)}
+  </ul>
+  <a class="mt-8 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:opacity-90 transition" href={ctaHref}>
+    {ctaLabel}
+  </a>
+</article>

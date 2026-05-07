@@ -1,0 +1,31 @@
+---
+interface Step {
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title?: string;
+  steps: Step[];
+}
+
+const { title = 'Zo werkt het.', steps } = Astro.props;
+---
+
+<section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+    <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Proces</p>
+    <h2 class="max-w-3xl text-4xl font-medium uppercase leading-none md:text-7xl">{title}</h2>
+  </div>
+  <ol class="mt-16 grid border-y border-ink md:grid-cols-3 md:divide-x md:divide-ink">
+    {steps.map((step, index) => (
+      <li class="py-8 md:px-8">
+        <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">
+          {String(index + 1).padStart(2, '0')}
+        </span>
+        <h3 class="mt-8 text-2xl font-medium uppercase leading-tight">{step.title}</h3>
+        <p class="mt-4 text-[15px] leading-[1.5]">{step.description}</p>
+      </li>
+    ))}
+  </ol>
+</section>

@@ -1,0 +1,24 @@
+@import "tailwindcss";
+
+@theme {
+  --color-cream: #faf7ee;
+  --color-ink: #0a0a0a;
+  --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "IBM Plex Mono", "Geist Mono", monospace;
+}
+
+@layer base {
+  html {
+    background: #faf7ee;
+  }
+
+  body {
+    background: #faf7ee;
+    color: #0a0a0a;
+  }
+
+  ::selection {
+    background: #0a0a0a;
+    color: #faf7ee;
+  }
+}

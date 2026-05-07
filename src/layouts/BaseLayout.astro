@@ -1,0 +1,334 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  noindex?: boolean;
+  lang?: 'nl' | 'en';
+  alternateUrl?: string;
+}
+
+const {
+  title,
+  description,
+  image = '/og-default.jpg',
+  canonical = Astro.url.href,
+  noindex = false,
+  lang = 'nl',
+  alternateUrl,
+} = Astro.props;
+
+const ogImage = new URL(image, Astro.url).href;
+const currentUrl = canonical;
+const nlUrl = lang === 'nl' ? currentUrl : alternateUrl;
+const enUrl = lang === 'en' ? currentUrl : alternateUrl;
+const ogLocale = lang === 'nl' ? 'nl_NL' : 'en_US';
+const currentYear = new Date().getFullYear();
+
+const professionalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Fotograaf Promotie Radboud',
+  description:
+    'Gespecialiseerde fotografie van promoties aan de Radboud Universiteit Nijmegen',
+  url: 'https://fotograafpromotieradboud.nl',
+  image: [ogImage],
+  serviceType: 'Promotion photography',
+  areaServed: {
+    '@type': 'City',
+    name: 'Nijmegen',
+  },
+  provider: {
+    '@type': 'Person',
+    name: 'Paul Breuker',
+    jobTitle: 'Fotograaf',
+    email: 'info@paulbreuker.nl',
+    telephone: '+31651475406',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: '300',
+    priceCurrency: 'EUR',
+    description: "Vast pakket: 2 uur fotografie, 100 nabewerkte foto's",
+  },
+  sameAs: [],
+};
+
+const navItems = [
+  { href: '/aanbod', label: 'Aanbod' },
+  { href: '/over', label: 'Over' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const footerNavItems = [
+  ...navItems,
+  { href: '/privacy', label: 'Privacy' },
+  { href: '/algemene-voorwaarden', label: 'Algemene voorwaarden' },
+];
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <!-- Basis meta -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="canonical" href={canonical} />
+
+    <!-- Hreflang alternates -->
+    {
+      alternateUrl && nlUrl && enUrl && (
+        <>
+          <link rel="alternate" hreflang="nl-NL" href={nlUrl} />
+          <link rel="alternate" hreflang="en" href={enUrl} />
+          <link rel="alternate" hreflang="x-default" href={nlUrl} />
+        </>
+      )
+    }
+
+    <!-- Open Graph -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={ogLocale} />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Fonts en site assets -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" type="application/xml" href="/sitemap-index.xml" />
+
+    <!-- Structured data -->
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify(professionalServiceSchema)}
+    />
+    <slot name="schema" />
+  </head>
+  <body class="min-h-screen bg-cream font-sans text-ink antialiased">
+    <!-- Header -->
+    <slot name="header">
+      <header class="sticky top-0 z-50 border-b border-ink bg-cream">
+        <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-5 md:px-10 lg:px-16">
+          <a href="/" class="flex items-center gap-3 font-mono text-[13px] uppercase tracking-[0.06em]">
+            <span class="grid h-9 w-9 grid-cols-2 gap-1" aria-hidden="true">
+              <span class="border border-ink"></span>
+              <span class="border border-ink"></span>
+              <span class="border border-ink"></span>
+              <span class="bg-ink"></span>
+            </span>
+            <span>Promotie fotograaf Radboud</span>
+          </a>
+
+          <!-- Desktop navigatie -->
+          <nav class="hidden items-center gap-7 font-mono text-[13px] uppercase tracking-[0.04em] md:flex" aria-label="Hoofdnavigatie">
+            {
+              navItems.map((item) => (
+                <a class="transition hover:opacity-60" href={item.href}>
+                  {item.label}
+                </a>
+              ))
+            }
+            <a
+              class="rounded-[10px] bg-ink px-6 py-3 text-cream transition hover:opacity-80"
+              href="/contact"
+            >
+              Vraag beschikbaarheid aan
+            </a>
+          </nav>
+
+          <!-- Mobile menu trigger -->
+          <button
+            type="button"
+            id="mobile-menu-toggle"
+            aria-label="Menu openen"
+            aria-controls="mobile-menu"
+            aria-expanded="false"
+            class="md:hidden w-11 h-11 border border-ink rounded-full flex items-center justify-center font-mono text-xs tracking-[0.04em] uppercase hover:bg-ink hover:text-cream transition"
+          >
+            <span class="menu-text-open">Menu</span>
+            <span class="menu-text-close hidden">Sluit</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Mobile menu drawer -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden fixed inset-x-0 top-20 bottom-0 bg-cream z-40 overflow-y-auto"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Hoofdnavigatie"
+      >
+        <nav class="flex flex-col px-6 pt-8 pb-4">
+          <a
+            href="/aanbod"
+            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
+          >
+            Aanbod
+          </a>
+          <a
+            href="/over"
+            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
+          >
+            Over
+          </a>
+          <a
+            href="/contact"
+            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
+          >
+            Contact
+          </a>
+        </nav>
+
+        <!-- Footer area in drawer -->
+        <div class="px-6 py-6 border-t border-ink/10 mt-4">
+          <a
+            href="/contact"
+            class="block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-4 rounded-[10px] text-center hover:opacity-90 transition"
+          >
+            Vraag beschikbaarheid aan
+          </a>
+        </div>
+      </div>
+    </slot>
+
+    <!-- Pagina-inhoud -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <slot name="footer">
+      <footer class="border-t border-ink bg-cream">
+        <div class="mx-auto max-w-[1440px] px-5 py-16 md:px-10 lg:px-16">
+          <div class="grid gap-10 md:grid-cols-4 md:divide-x md:divide-ink">
+            <section>
+              <h3 class="text-2xl font-medium uppercase leading-none tracking-tight">
+                Promotie<br />Radboud
+              </h3>
+              <p class="mt-6 max-w-xs text-[15px] leading-6">
+                Ingetogen promotiefotografie aan de Radboud Universiteit Nijmegen.
+              </p>
+            </section>
+
+            <section class="md:pl-10">
+              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Pagina's</h3>
+              <ul class="mt-5 space-y-3 font-mono text-[13px] uppercase tracking-[0.04em]">
+                {
+                  navItems.map((item) => (
+                    <li>
+                      <a class="transition hover:opacity-60" href={item.href}>
+                        {item.label}
+                      </a>
+                    </li>
+                  ))
+                }
+              </ul>
+            </section>
+
+            <section class="md:pl-10">
+              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Contact</h3>
+              <ul class="mt-5 space-y-3 text-[15px] leading-6">
+                <li>
+                  <a class="transition hover:opacity-60" href="mailto:info@paulbreuker.nl">
+                    info@paulbreuker.nl
+                  </a>
+                </li>
+                <li>
+                  <a class="transition hover:opacity-60" href="tel:+31651475406">
+                    +31 6 51 47 54 06
+                  </a>
+                </li>
+              </ul>
+            </section>
+
+            <section class="md:pl-10">
+              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Documenten</h3>
+              <ul class="mt-5 space-y-3 font-mono text-[13px] uppercase tracking-[0.04em]">
+                {footerNavItems.slice(navItems.length).map((item) => (
+                  <li>
+                    <a class="transition hover:opacity-60" href={item.href}>
+                      {item.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          </div>
+
+          <div
+            class="mt-16 border-t border-ink pt-6 font-mono text-[11px] uppercase tracking-[0.06em] md:grid md:grid-cols-2"
+          >
+            <p>&copy; {currentYear} Fotograaf Promotie Radboud</p>
+            <p class="mt-2 md:mt-0 md:text-right">
+              Nijmegen · Radboud Universiteit
+            </p>
+          </div>
+        </div>
+      </footer>
+    </slot>
+    <script is:inline>
+      (function() {
+        const toggle = document.getElementById('mobile-menu-toggle');
+        const menu = document.getElementById('mobile-menu');
+        if (!toggle || !menu) return;
+
+        const openText = toggle.querySelector('.menu-text-open');
+        const closeText = toggle.querySelector('.menu-text-close');
+
+        function setMenu(open) {
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+          toggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+
+          if (open) {
+            menu.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+            openText.classList.add('hidden');
+            closeText.classList.remove('hidden');
+          } else {
+            menu.classList.add('hidden');
+            document.body.style.overflow = '';
+            openText.classList.remove('hidden');
+            closeText.classList.add('hidden');
+          }
+        }
+
+        toggle.addEventListener('click', function() {
+          const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+          setMenu(!isOpen);
+        });
+
+        // Sluit menu bij klik op een link
+        menu.querySelectorAll('a').forEach(link => {
+          link.addEventListener('click', () => setMenu(false));
+        });
+
+        // Sluit op escape-toets
+        document.addEventListener('keydown', function(e) {
+          if (e.key === 'Escape' && toggle.getAttribute('aria-expanded') === 'true') {
+            setMenu(false);
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

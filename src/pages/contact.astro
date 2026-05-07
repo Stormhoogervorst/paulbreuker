@@ -1,0 +1,262 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Contact | Fotograaf Promotie Radboud"
+  description="Doe een aanvraag voor de fotografie van je promotie aan de Radboud Universiteit. Reactie binnen 24 uur."
+  alternateUrl="https://fotograafpromotieradboud.nl/en/contact/"
+>
+  <!-- SECTIE 1: PAGE HEADER -->
+  <section class="mx-auto max-w-[1440px] px-5 pt-24 pb-12 md:px-10 md:pt-32 md:pb-16 lg:px-16">
+    <div class="mx-auto max-w-3xl border-t border-ink pt-10 text-center">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Contact</p>
+      <h1 class="mt-6 text-5xl font-medium leading-none tracking-[-0.02em] md:text-7xl">
+        Doe een aanvraag
+      </h1>
+      <p class="mt-8 text-[17px] leading-[1.55]">
+        Vul hieronder de details van je promotie in. Ik check je datum in de agenda en reageer
+        binnen vierentwintig uur — meestal sneller. Geen automatische antwoorden, ik lees alle
+        berichten zelf.
+      </p>
+    </div>
+  </section>
+
+  <!-- SECTIE 2: FORMULIER + DIRECT CONTACT -->
+  <section class="mx-auto max-w-[1440px] px-5 pb-24 md:px-10 md:pb-32 lg:px-16">
+    <div class="grid gap-12 border-t border-ink pt-10 md:grid-cols-3 md:gap-16">
+      <form
+        action="https://api.web3forms.com/submit"
+        method="POST"
+        class="space-y-6 md:col-span-2"
+      >
+        <input type="hidden" name="access_key" value="VERVANG_DOOR_ACCESS_KEY" />
+        <input
+          type="hidden"
+          name="subject"
+          value="Nieuwe boekingsaanvraag — fotograafpromotieradboud.nl"
+        />
+        <input type="hidden" name="from_name" value="fotograafpromotieradboud.nl" />
+        <input
+          type="checkbox"
+          name="botcheck"
+          class="hidden"
+          style="display:none"
+          tabindex="-1"
+          autocomplete="off"
+        />
+
+        <div>
+          <label for="naam" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Naam
+          </label>
+          <input
+            id="naam"
+            name="naam"
+            type="text"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="email" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            E-mail
+          </label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="telefoon" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Telefoonnummer <span class="normal-case tracking-normal">(optioneel)</span>
+          </label>
+          <input
+            id="telefoon"
+            name="telefoon"
+            type="tel"
+            autocomplete="tel"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label
+            for="datum_promotie"
+            class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60"
+          >
+            Datum promotie
+          </label>
+          <input
+            id="datum_promotie"
+            name="datum_promotie"
+            type="date"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="tijdstip" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Tijdstip aanvang verdediging
+          </label>
+          <input
+            id="tijdstip"
+            name="tijdstip"
+            type="time"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          />
+        </div>
+
+        <div>
+          <label for="locatie" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Locatie
+          </label>
+          <select
+            id="locatie"
+            name="locatie"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          >
+            <option disabled selected value="">Maak een keuze</option>
+            <option>Aula Radboud Universiteit</option>
+            <option>Academiegebouw Nijmegen</option>
+            <option>Andere locatie</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="faculteit" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Faculteit
+          </label>
+          <select
+            id="faculteit"
+            name="faculteit"
+            required
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+          >
+            <option disabled selected value="">Maak een keuze</option>
+            <option>Faculteit der Letteren</option>
+            <option>Faculteit der Sociale Wetenschappen</option>
+            <option>Faculteit der Medische Wetenschappen</option>
+            <option>Faculteit der Natuurwetenschappen, Wiskunde en Informatica</option>
+            <option>Faculteit der Managementwetenschappen</option>
+            <option>Faculteit der Filosofie, Theologie en Religiewetenschappen</option>
+            <option>Faculteit der Rechtsgeleerdheid</option>
+            <option>Anders / weet ik niet</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="bericht" class="mb-2 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Bijzonderheden of vragen <span class="normal-case tracking-normal">(optioneel)</span>
+          </label>
+          <textarea
+            id="bericht"
+            name="bericht"
+            rows="5"
+            placeholder="Bijvoorbeeld: paranimfen, specifieke wensen, of vragen die je hebt."
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition placeholder:text-ink/60 focus:bg-ink focus:text-cream focus:outline-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          class="mt-4 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:opacity-90 transition"
+        >
+          Verstuur aanvraag
+        </button>
+
+        <p class="max-w-2xl text-xs leading-relaxed">
+          Door te versturen ga je akkoord dat ik je gegevens gebruik om op je aanvraag te reageren.
+          Zie de
+          <a href="/privacy" class="underline underline-offset-4 transition hover:opacity-60">
+            privacyverklaring
+          </a>
+          voor details.
+        </p>
+      </form>
+
+      <aside class="space-y-8 md:sticky md:top-24 md:self-start">
+        <div class="border-l border-ink pl-6">
+          <h3 class="text-xl font-medium">Liever direct contact?</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            Voor een korte vraag of een snelle check op beschikbaarheid kun je ook bellen, mailen
+            of appen.
+          </p>
+          <div class="mt-6 space-y-4 text-sm">
+            <p>
+              <span class="mb-1 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+                E-mail
+              </span>
+              <a href="mailto:info@paulbreuker.nl" class="transition hover:opacity-60">
+                info@paulbreuker.nl
+              </a>
+            </p>
+            <p>
+              <span class="mb-1 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+                Telefoon
+              </span>
+              <a href="tel:+31651475406" class="transition hover:opacity-60">
+                +31 6 51 47 54 06
+              </a>
+            </p>
+            <p>
+              <span class="mb-1 block font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+                WhatsApp
+              </span>
+              <a href="https://wa.me/31651475406" class="transition hover:opacity-60">
+                +31 6 51 47 54 06
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <div class="border-l border-ink pl-6">
+          <h3 class="text-xl font-medium">Reactietijd</h3>
+          <p class="mt-3 text-sm leading-relaxed">
+            Ik reageer binnen 24 uur, doorgaans sneller. Op vakantiedagen kan dit langer duren —
+            dan vermeld ik dat hier.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- SECTIE 3: KORTE GERUSTSTELLING ONDERAAN -->
+  <section class="mx-auto max-w-[1440px] px-5 py-20 md:px-10 md:py-24 lg:px-16">
+    <div class="mx-auto max-w-3xl border-y border-ink py-12 text-center">
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">Wat er gebeurt na je aanvraag</h2>
+      <div class="mt-12 grid gap-10 text-left md:grid-cols-3">
+        <article>
+          <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">01</span>
+          <h3 class="mt-2 text-lg font-medium">Reactie binnen 24 uur</h3>
+          <p class="mt-2 text-sm leading-relaxed">
+            Ik bevestig je aanvraag en stel een paar korte vragen als ik die heb.
+          </p>
+        </article>
+        <article>
+          <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">02</span>
+          <h3 class="mt-2 text-lg font-medium">Datum check</h3>
+          <p class="mt-2 text-sm leading-relaxed">
+            Ik kijk of je datum nog vrij is en stem eventuele details af, per mail of telefoon.
+          </p>
+        </article>
+        <article>
+          <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">03</span>
+          <h3 class="mt-2 text-lg font-medium">Reservering</h3>
+          <p class="mt-2 text-sm leading-relaxed">
+            Datum staat vast, geen aanbetaling. Een korte bevestigingsmail volgt.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

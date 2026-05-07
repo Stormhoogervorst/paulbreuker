@@ -1,0 +1,378 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import portret from '../assets/over/portret.jpg';
+import foto6 from '../assets/over/foto-6.jpg';
+import foto7 from '../assets/over/foto-7.jpg';
+import foto8 from '../assets/over/foto-8.png';
+import foto9 from '../assets/over/foto-9.png';
+import foto10 from '../assets/over/foto-10.jpg';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Paul Breuker',
+  jobTitle: 'Fotograaf en kunstenaar',
+  description:
+    'Kunstenaar en fotograaf in Nijmegen sinds 1984. Specialisatie portret en fotoreportage.',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Nijmegen',
+    addressCountry: 'NL',
+  },
+  memberOf: [
+    { '@type': 'Organization', name: 'GKF' },
+    { '@type': 'Organization', name: 'Dupho' },
+  ],
+} as const;
+---
+
+<BaseLayout
+  title="Paul Breuker | Fotograaf in Nijmegen"
+  description="Paul Breuker, kunstenaar en fotograaf in Nijmegen sinds 1984. Specialisatie portret en fotoreportage. Exposities in Photoville New York, Kunsthal Rotterdam, Museum het Valkhof."
+  alternateUrl="https://fotograafpromotieradboud.nl/en/about/"
+>
+  <script
+    slot="schema"
+    type="application/ld+json"
+    set:html={JSON.stringify(personSchema)}
+  />
+
+  <!-- Page header -->
+  <section class="pt-24 pb-16 md:pt-32 md:pb-24">
+    <div class="mx-auto max-w-[1440px] px-8 md:px-16">
+      <p class="font-mono text-xs uppercase tracking-[0.04em] opacity-60">Over</p>
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05]">
+        Paul Breuker
+      </h1>
+      <p class="mt-8 max-w-2xl text-lg leading-relaxed text-ink/70 md:text-xl">
+        Kunstenaar en fotograaf in Nijmegen, sinds 1984. Specialisatie portret
+        en fotoreportage.
+      </p>
+    </div>
+  </section>
+
+  <!-- Portret en introductie -->
+  <section>
+    <div class="mx-auto max-w-[1440px] border-t border-ink px-8 py-16 md:px-16 md:py-24">
+      <div class="grid grid-cols-12 gap-8 md:gap-16">
+        <div class="col-span-12 md:col-span-5">
+          <Image
+            src={portret}
+            alt="Paul Breuker, fotograaf in Nijmegen"
+            class="w-full aspect-[4/5] object-cover object-[65%_50%] rounded-2xl"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 40vw"
+          />
+        </div>
+
+        <div class="col-span-12 md:col-span-7 md:pl-8">
+          <p class="font-mono text-xs uppercase tracking-[0.04em] opacity-60">
+            Praktijk
+          </p>
+          <h2 class="mt-8 text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+            Schilder, fotograaf, getuige.
+          </h2>
+          <div class="mt-10 space-y-6 text-[17px] leading-relaxed">
+            <p>
+              Sinds 1984 werk ik als kunstenaar. Eerst als schilder, vanaf 1995
+              ook als fotograaf. Die twee disciplines voeden elkaar — schilders
+              kijken naar licht, compositie en gebaar; fotografen leggen vast
+              wat ze zien. In mijn werk komen ze samen.
+            </p>
+            <p>
+              Mijn specialisatie ligt bij portret en fotoreportage. Ik
+              fotografeer mensen het liefst onopvallend, in hun eigen omgeving
+              en op hun eigen momenten. Geen geposeerde plaatjes, tenzij iemand
+              daar specifiek om vraagt. Wat ik zoek is het echte gebaar.
+            </p>
+            <p>
+              Mijn projecten 'Love &amp; Marriage' en 'Take me to the river'
+              werden geëxposeerd in Photoville (New York), de Kunsthal in
+              Rotterdam, Museum het Valkhof, Museum de Bastei en op meer plekken
+              in binnen- en buitenland. Publicaties verschenen onder meer in de
+              Volkskrant, de Telegraaf, de Standaard en de Gelderlander.
+            </p>
+            <p>
+              De Radboud-promotie is voor mij een terugkerende opdracht waarbij
+              ik mijn ervaring met portret en reportage samenbreng. Bewust
+              toegankelijk geprijsd, omdat een promotie voor veel mensen een
+              eenmalig moment is dat verdient om goed vastgelegd te worden.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Werk grid -->
+  <section>
+    <div class="mx-auto max-w-[1440px] border-t border-ink px-8 py-16 md:px-16 md:py-24">
+      <p class="text-center font-mono text-xs uppercase tracking-[0.04em] opacity-60">
+        Werk
+      </p>
+      <h2 class="mx-auto mt-6 max-w-3xl text-center text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        Een glimp uit recente projecten
+      </h2>
+
+      <div class="mt-16 grid grid-cols-1 gap-4 md:grid-cols-12 md:gap-6">
+        <div class="overflow-hidden rounded-2xl md:col-span-7 md:row-span-2">
+          <Image
+            src={foto6}
+            alt="Portret uit project Love & Marriage, expositie Photoville New York"
+            class="h-full w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
+        <div class="overflow-hidden rounded-2xl md:col-span-5">
+          <Image
+            src={foto7}
+            alt="Reportagebeeld uit Take me to the river, Volkskrant"
+            class="h-full w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
+        <div class="overflow-hidden rounded-2xl md:col-span-5">
+          <Image
+            src={foto8}
+            alt="Werk uit Het gezicht van Nijmegen, Museum het Valkhof"
+            class="h-full w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
+        <div class="overflow-hidden rounded-2xl md:col-span-5">
+          <Image
+            src={foto9}
+            alt="Portret in editorial stijl door Paul Breuker"
+            class="h-full w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+
+        <div class="overflow-hidden rounded-2xl md:col-span-7">
+          <Image
+            src={foto10}
+            alt="Reportage in opdracht door Paul Breuker"
+            class="h-full w-full rounded-2xl object-cover transition duration-700 hover:scale-105"
+            widths={[400, 800, 1200]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Werkwijze -->
+  <section>
+    <div class="mx-auto max-w-[1440px] border-t border-ink px-8 py-16 md:px-16 md:py-24">
+      <p class="font-mono text-xs uppercase tracking-[0.04em] opacity-60">
+        Werkwijze
+      </p>
+      <h2 class="mt-6 max-w-3xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        Hoe ik werk
+      </h2>
+
+      <div class="mt-16 grid grid-cols-1 gap-8 md:grid-cols-3 md:gap-12">
+        <div class="border-t border-ink pt-8">
+          <span class="font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+            01
+          </span>
+          <h3 class="mt-6 text-2xl font-medium leading-tight">
+            Onopvallend aanwezig
+          </h3>
+          <p class="mt-4 text-[15px] leading-relaxed text-ink/70">
+            Tijdens een ceremonie zie je me liever niet. Ik werk aan de zijkant,
+            beweeg ingetogen, en maak beelden wanneer er niemand op let. Dat
+            levert de meest natuurlijke beelden op.
+          </p>
+        </div>
+
+        <div class="border-t border-ink pt-8">
+          <span class="font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+            02
+          </span>
+          <h3 class="mt-6 text-2xl font-medium leading-tight">Bestaand licht</h3>
+          <p class="mt-4 text-[15px] leading-relaxed text-ink/70">
+            Waar mogelijk werk ik met het licht dat er is. Geen flitslicht in
+            een Aula, geen lampen die de sfeer breken. Het licht hoort bij het
+            moment.
+          </p>
+        </div>
+
+        <div class="border-t border-ink pt-8">
+          <span class="font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+            03
+          </span>
+          <h3 class="mt-6 text-2xl font-medium leading-tight">
+            Het echte gebaar
+          </h3>
+          <p class="mt-4 text-[15px] leading-relaxed text-ink/70">
+            Geposeerde groepsbeelden maak ik graag, maar pas op verzoek. Mijn
+            werk gaat over het ongedwongen moment: de zenuwen voor de
+            verdediging, de eerste omhelzing na de bul.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV hoogtepunten -->
+  <section>
+    <div class="mx-auto max-w-[1440px] border-t border-ink px-8 py-16 md:px-16 md:py-24">
+      <p class="font-mono text-xs uppercase tracking-[0.04em] opacity-60">
+        Curriculum
+      </p>
+      <h2 class="mt-6 max-w-3xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        Hoogtepunten
+      </h2>
+
+      <div class="mt-16 grid grid-cols-12 gap-8 md:gap-16">
+        <div class="col-span-12 md:col-span-4">
+          <p class="mb-4 font-mono text-xs uppercase tracking-[0.04em] opacity-50">
+            Selectie
+          </p>
+          <p class="max-w-sm text-[15px] leading-relaxed text-ink/70">
+            Een greep uit veertig jaar werken als kunstenaar en fotograaf. Het
+            volledige overzicht is op aanvraag beschikbaar.
+          </p>
+        </div>
+
+        <div class="col-span-12 md:col-span-8">
+          <div class="border-t border-ink/20 py-8">
+            <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+              Solo-exposities (selectie)
+            </p>
+            <ul class="space-y-3 text-[17px]">
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2014–2018
+                </span>
+                <span>Photoville, New York</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2014–2018
+                </span>
+                <span>Kunsthal, Rotterdam</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2018–2021
+                </span>
+                <span>Museum de Bastei, Nijmegen</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2018–2021
+                </span>
+                <span>Radboud Universiteit, Nijmegen</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2020
+                </span>
+                <span>Museum het Valkhof, Nijmegen</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2022
+                </span>
+                <span>St. Stevenskerk (750 jaar), Nijmegen</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2022
+                </span>
+                <span>Klimaatexpo Grote Kerk, Zwolle</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="border-t border-ink/20 py-8">
+            <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+              Publicaties
+            </p>
+            <ul class="space-y-3 text-[17px]">
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  n.v.t.
+                </span>
+                <span>de Volkskrant</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  n.v.t.
+                </span>
+                <span>de Telegraaf</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  n.v.t.
+                </span>
+                <span>de Standaard</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  n.v.t.
+                </span>
+                <span>de Gelderlander</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  n.v.t.
+                </span>
+                <span>EenVandaag (TV)</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="border-t border-ink/20 py-8">
+            <p class="mb-4 font-mono text-[11px] uppercase tracking-[0.06em] opacity-50">
+              Lidmaatschappen
+            </p>
+            <ul class="space-y-3 text-[17px]">
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  1997–heden
+                </span>
+                <span>GKF (Gebonden Kunstenaars Federatie)</span>
+              </li>
+              <li class="flex gap-6">
+                <span class="w-20 flex-shrink-0 font-mono text-sm tracking-[0.04em] opacity-60">
+                  2015–heden
+                </span>
+                <span>Dupho (Dutch Photographers)</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Slot CTA -->
+  <section>
+    <div class="mx-auto max-w-[1440px] border-t border-ink px-8 py-24 text-center md:px-16 md:py-32">
+      <h2 class="mx-auto max-w-2xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase">
+        Een promotie in de agenda?
+      </h2>
+      <p class="mx-auto mt-8 max-w-xl text-[17px] leading-relaxed text-ink/70">
+        Vul het aanvraagformulier in met je datum en eventuele wensen. Ik reageer binnen
+        vierentwintig uur.
+      </p>
+      <a
+        href="/contact"
+        class="mt-12 inline-block rounded-[10px] bg-ink px-8 py-4 font-mono text-xs uppercase tracking-[0.06em] text-cream transition hover:opacity-90"
+      >
+        Vraag beschikbaarheid aan
+      </a>
+    </div>
+  </section>
+</BaseLayout>

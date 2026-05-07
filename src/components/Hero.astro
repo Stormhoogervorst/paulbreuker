@@ -1,0 +1,41 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description: string;
+  primaryCta?: {
+    label: string;
+    href: string;
+  };
+  secondaryCta?: {
+    label: string;
+    href: string;
+  };
+}
+
+const { eyebrow, title, description, primaryCta, secondaryCta } = Astro.props;
+---
+
+<section class="mx-auto max-w-[1440px] px-5 py-24 md:px-10 md:py-32 lg:px-16">
+  <div class="border-t border-ink pt-10">
+    {eyebrow && <p class="mb-6 font-mono text-xs tracking-[0.04em] uppercase opacity-60">{eyebrow}</p>}
+    <div class="grid gap-8 lg:grid-cols-[0.72fr_0.28fr] lg:items-end">
+      <h1 class="max-w-5xl text-6xl font-medium leading-none tracking-[-0.02em] md:text-8xl lg:text-9xl">{title}</h1>
+      <p class="max-w-md text-[17px] leading-[1.55]">{description}</p>
+      {(primaryCta || secondaryCta) && (
+        <div class="mt-2 flex flex-wrap gap-3 lg:col-start-2">
+          {primaryCta && (
+            <a class="inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-8 py-4 rounded-[10px] hover:opacity-90 transition" href={primaryCta.href}>
+              {primaryCta.label}
+            </a>
+          )}
+          {secondaryCta && (
+            <a class="inline-block border border-ink text-ink font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:bg-ink hover:text-cream transition" href={secondaryCta.href}>
+              {secondaryCta.label}
+            </a>
+          )}
+        </div>
+      )}
+    </div>
+  </div>
+</section>
