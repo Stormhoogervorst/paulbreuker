@@ -3,6 +3,10 @@
 @theme {
   --color-cream: #faf7ee;
   --color-ink: #0a0a0a;
+  /* Editorial spot color — gebruik spaarzaam, alleen als accent */
+  --color-accent-red: #8b0000;
+  /* Donkere oudrood-variant voor button hover-states */
+  --color-accent-red-dark: #6b0000;
   --font-sans: "Inter", "Helvetica Neue", Arial, sans-serif;
   --font-mono: "JetBrains Mono", "IBM Plex Mono", "Geist Mono", monospace;
 }

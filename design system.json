@@ -1,0 +1,282 @@
+{
+    "$schema": "design-system-profile/v1",
+    "name": "Fylla",
+    "description": "Editorial, minimal agency template. Cream background with high-contrast black typography. Heavy reliance on whitespace, thin dividers, oversized sans-serif display type, and monospace accents for secondary UI labels.",
+  
+    "color": {
+      "background": {
+        "primary": "#FAF7EE",
+        "primaryDescription": "Cream / off-white. Warm, slightly yellow undertone. Used as full-page background.",
+        "surface": "#FAF7EE",
+        "surfaceDescription": "No raised cards or surfaces — content sits directly on background. Image containers use rounded rectangles only.",
+        "inverse": "#0A0A0A"
+      },
+      "text": {
+        "primary": "#0A0A0A",
+        "primaryDescription": "Near-black. Used for headlines, body, navigation.",
+        "secondary": "#0A0A0A",
+        "secondaryNote": "No grey body text — secondary hierarchy is achieved through size and weight, not color.",
+        "muted": "#0A0A0A",
+        "onInverse": "#FAF7EE"
+      },
+      "border": {
+        "default": "#0A0A0A",
+        "defaultDescription": "Hairline dividers and outlined circles use full black at 1px. No soft greys.",
+        "weight": "1px"
+      },
+      "accent": {
+        "primary": "#0A0A0A",
+        "note": "No chromatic accent. The black-on-cream contrast IS the accent system."
+      },
+      "palette": {
+        "cream": "#FAF7EE",
+        "ink": "#0A0A0A"
+      }
+    },
+  
+    "typography": {
+      "fontFamilies": {
+        "display": {
+          "stack": "'Inter', 'Helvetica Neue', Arial, sans-serif",
+          "alternativeMatch": "Could also be Söhne, General Sans, or similar geometric grotesque",
+          "usage": "All headlines (H1, H2, section titles like 'OUR VALUES', 'FEATURED WORK', 'BRANDING')",
+          "characteristics": "Geometric sans-serif, slightly condensed feel at large sizes, neutral, modern grotesque"
+        },
+        "body": {
+          "stack": "'Inter', 'Helvetica Neue', Arial, sans-serif",
+          "usage": "Paragraph text, descriptions",
+          "characteristics": "Same family as display, used at smaller sizes with regular weight"
+        },
+        "mono": {
+          "stack": "'JetBrains Mono', 'IBM Plex Mono', 'Geist Mono', monospace",
+          "usage": "Navigation links, footer links, section labels ('WHAT WE DO'), step numbers ('01', '02'), CTAs ('SEE ALL WORK', 'MORE TEMPLATES'), URL display, copyright line",
+          "characteristics": "Slab-ish monospace with circular dots and clean terminals. Always set in UPPERCASE with letterspacing for these UI labels."
+        }
+      },
+  
+      "scale": {
+        "displayXL": {
+          "size": "96px",
+          "lineHeight": "1.0",
+          "weight": "500",
+          "letterSpacing": "-0.02em",
+          "case": "sentence",
+          "usage": "Hero headline ('We are a digital agency from Lisbon.')",
+          "notes": "Tight leading, period included as deliberate punctuation."
+        },
+        "displayL": {
+          "size": "72px",
+          "lineHeight": "1.0",
+          "weight": "500",
+          "letterSpacing": "0",
+          "case": "uppercase",
+          "usage": "Section titles ('OUR VALUES', 'FEATURED WORK')",
+          "notes": "Big, anchoring typographic statements. Always uppercase, no letter spacing adjustment."
+        },
+        "displayM": {
+          "size": "56px",
+          "lineHeight": "1.05",
+          "weight": "500",
+          "case": "sentence",
+          "usage": "Featured work title size mid-page"
+        },
+        "headingL": {
+          "size": "32px",
+          "lineHeight": "1.15",
+          "weight": "500",
+          "case": "uppercase",
+          "letterSpacing": "0",
+          "usage": "Subsection headings ('VISION', 'INNOVATION', 'BRANDING', 'DESIGN')"
+        },
+        "headingM": {
+          "size": "20px",
+          "lineHeight": "1.3",
+          "weight": "500",
+          "case": "sentence",
+          "usage": "Card titles ('Pages', 'CMS', 'Utility Pages' in footer; project titles like 'Dancing Stars')"
+        },
+        "body": {
+          "size": "17px",
+          "lineHeight": "1.55",
+          "weight": "400",
+          "case": "sentence",
+          "usage": "Paragraphs, descriptions, address info"
+        },
+        "bodyS": {
+          "size": "15px",
+          "lineHeight": "1.5",
+          "weight": "400",
+          "usage": "Smaller descriptive text"
+        },
+        "labelMono": {
+          "size": "13px",
+          "lineHeight": "1.4",
+          "weight": "400",
+          "letterSpacing": "0.04em",
+          "case": "uppercase",
+          "fontFamily": "mono",
+          "usage": "Navigation items, footer link lists, button labels, section eyebrows ('WHAT WE DO'), URL strings, '© MADE BY GOLA TEMPLATES'"
+        },
+        "labelMonoS": {
+          "size": "11px",
+          "lineHeight": "1.4",
+          "weight": "400",
+          "letterSpacing": "0.06em",
+          "case": "uppercase",
+          "fontFamily": "mono",
+          "usage": "Step numbers in circles ('01', '02', '03'), social icon initials ('IN', 'PI', 'TW'), tiny meta dates ('2023')"
+        }
+      }
+    },
+  
+    "spacing": {
+      "scale": {
+        "0": "0px",
+        "1": "4px",
+        "2": "8px",
+        "3": "12px",
+        "4": "16px",
+        "5": "24px",
+        "6": "32px",
+        "7": "48px",
+        "8": "64px",
+        "9": "96px",
+        "10": "128px",
+        "11": "160px",
+        "12": "200px"
+      },
+      "sectionPaddingY": "128-200px",
+      "sectionPaddingYNote": "Generous vertical rhythm. Sections breathe with 96-200px top/bottom padding on desktop.",
+      "containerMaxWidth": "1440px",
+      "containerGutter": "64px",
+      "gridGap": "32-64px"
+    },
+  
+    "layout": {
+      "grid": {
+        "columns": 12,
+        "gutter": "32px",
+        "type": "12-col with frequent 2-col splits (50/50 hero, content-image; 4-col for service grids)"
+      },
+      "asymmetry": "Heavy use of asymmetric two-column layouts: large headline left + image right, or label-on-left + content-on-right.",
+      "dividers": {
+        "use": "Thin (1px) full-black horizontal and vertical rules separate sections and grid cells.",
+        "treatment": "Lines extend edge-to-edge or between content blocks; never decorative — always structural."
+      },
+      "imageContainers": {
+        "borderRadius": "16px",
+        "aspectRatio": "Variable, often 4:3 or 3:4 for portraits and 16:10 for hero images.",
+        "treatment": "Photos placed in rounded rectangles with no border or shadow; sit directly on cream background."
+      }
+    },
+  
+    "components": {
+      "navigation": {
+        "type": "Top bar, logo left + links center + CTA right + social right + theme toggle",
+        "height": "80px",
+        "logo": "Stacked-square mark + uppercase wordmark 'FYLLA'",
+        "links": "Monospace UPPERCASE labels, ~13px, letterspacing 0.04em",
+        "cta": "Solid black pill with white mono text 'LET'S TALK'",
+        "socialIcons": "Circular outlined buttons with 2-letter mono initials inside (IN, PI, TW)",
+        "themeToggle": "Circular outlined button with sun/moon icon",
+        "underline": "1px black hairline below the entire nav, full-width"
+      },
+      "button": {
+        "primary": {
+          "background": "#0A0A0A",
+          "text": "#FAF7EE",
+          "fontFamily": "mono",
+          "fontSize": "13px",
+          "letterSpacing": "0.06em",
+          "case": "uppercase",
+          "padding": "14px 24px",
+          "borderRadius": "10px",
+          "shape": "Soft pill / rounded rectangle",
+          "examples": ["LET'S TALK", "MORE TEMPLATES", "SEE ALL WORK", "VIEW"]
+        },
+        "iconCircle": {
+          "shape": "Perfect circle, 1px black border, transparent fill",
+          "size": "44px",
+          "content": "2-letter monospace label inside",
+          "use": "Social icons, ornamental accents"
+        }
+      },
+      "stepIndicator": {
+        "shape": "Outlined circle 32-36px",
+        "border": "1px solid #0A0A0A",
+        "label": "Mono numeral with leading zero ('01', '02', '03')",
+        "placement": "Inline before heading, vertically centered",
+        "use": "Numbered list of values/services"
+      },
+      "card": {
+        "type": "Borderless. Content sits in grid cells separated only by 1px dividers.",
+        "padding": "32-48px",
+        "treatment": "No background, no shadow. Often paired: small icon + heading + 1-2 line description."
+      },
+      "iconLineart": {
+        "style": "Thin (1px) geometric line illustrations — concentric circles, stacked triangles, four-point sparkle, ripple shapes",
+        "size": "48-56px",
+        "color": "#0A0A0A",
+        "use": "Service feature blocks (BRANDING, DESIGN cells)"
+      },
+      "footer": {
+        "structure": "4-column: logo+address+socials | Pages | CMS | Utility Pages",
+        "linkStyle": "Mono UPPERCASE, 13px, vertical rhythm with 12-16px gaps",
+        "divider": "Thin black hairline between footer columns and above copyright row",
+        "copyright": "© MADE BY [NAME] — left aligned mono caps, with PRIVACY link far right"
+      },
+      "imageCard": {
+        "borderRadius": "16-20px",
+        "metaLayout": "Title bottom-left, year top-right or far right, both outside the image"
+      }
+    },
+  
+    "iconography": {
+      "style": "Geometric line art, 1px stroke, no fill, no rounded caps",
+      "examples": ["concentric circles", "stacked triangles", "four-point sparkle/star", "ripple/target rings"],
+      "size": "48-56px in service grid; small SVG marks for nav logo",
+      "stroke": "1px",
+      "color": "#0A0A0A"
+    },
+  
+    "imagery": {
+      "treatment": "Editorial portrait photography, muted natural color palette (sage greens, warm tans, dusty pinks)",
+      "subjects": "People in considered poses, slight environmental context, natural light",
+      "borderRadius": "16-20px on all photo containers",
+      "aspectRatios": ["3:4 portrait", "4:5", "16:10 hero", "1:1 square"],
+      "framing": "Subjects often off-center, with negative space used compositionally",
+      "filters": "None apparent — photos sit at native warmth"
+    },
+  
+    "interactionPatterns": {
+      "hover": "Likely subtle — opacity shifts on links, button background swap on CTAs",
+      "viewOverlay": "On portfolio cards, a small dark pill labeled 'VIEW' appears centered on the image (visible on Dancing Stars card)",
+      "links": "Underlined on inline text links (e.g., 'GOLA TEMPLATES'), no underline on nav"
+    },
+  
+    "tone": {
+      "voice": "Confident, editorial, restrained. Short declarative headlines with periods. No exclamation marks.",
+      "vocabulary": "Premium-creative-agency lexicon: 'craft', 'compelling', 'cutting-edge', 'storytelling', 'resonates'",
+      "headlineStyle": "Statement-of-being ('We are a digital agency from Lisbon.') paired with a one-sentence elaboration"
+    },
+  
+    "designPrinciples": [
+      "Cream + black is the entire color system. No grey, no accent color.",
+      "Typography does the heavy lifting; UI chrome is minimal.",
+      "Monospace = UI/labels/secondary. Sans-serif = headlines/content. Never mix the roles.",
+      "Whitespace is structural — sections breathe with 100-200px vertical padding.",
+      "Lines, not shadows. Hierarchy via 1px hairlines between sections and cells.",
+      "Photos are framed in rounded rectangles, never bleeding to edge.",
+      "Numbers are prefixed with zero ('01' not '1') — gives every list a rhythmic, editorial feel."
+    ],
+  
+    "applicabilityNotes": {
+      "fitForPhotographyPortfolioSite": "Strong fit — the template is built around large photography blocks with editorial typography around them. Adapts naturally to a fotograafpromotieradboud.nl context.",
+      "adjustments": [
+        "Swap agency-tone copy for warmer first-person voice ('I' not 'we').",
+        "Consider one subtle accent color (deep burgundy or ink blue) to nod to academic tradition without breaking the cream/black system.",
+        "Replace abstract line icons with photo-specific marks (camera, calendar, document) or omit icons entirely.",
+        "Lean into the editorial monospace for protocol terms (paranimfen, pedel, hora est) — gives gravitas appropriate to academic ceremony."
+      ]
+    }
+  }

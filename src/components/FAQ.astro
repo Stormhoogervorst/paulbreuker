@@ -23,7 +23,7 @@ const { items, title = 'Goed om vooraf te weten.', eyebrow = 'Veelgestelde vrage
       <details class="group">
         <summary class="flex cursor-pointer list-none items-center justify-between gap-8 py-6 text-xl font-medium transition hover:opacity-60 md:text-2xl">
           {item.question}
-          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink font-mono text-[13px] transition-transform group-open:rotate-45">
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink font-mono text-[13px] transition-[transform,color,border-color] duration-200 group-open:rotate-45 group-open:border-accent-red group-open:text-accent-red">
             +
           </span>
         </summary>

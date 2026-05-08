@@ -1,0 +1,59 @@
+Dit is fotograafpromotieradboud.nl — een gespecialiseerde website voor 
+één dienst: promotiefotografie aan de Radboud Universiteit Nijmegen.
+
+Doelgroep: promovendi (Radboud) die 2-6 maanden voor hun verdediging 
+een fotograaf zoeken. Deel internationaal (NL + EN versie nodig).
+
+Aanbod: één pakket, €300, 2 uur fotografie, 100 foto's. Geen pakketmatrix.
+
+Doelen: 
+- SEO ranking op "fotograaf promotie Radboud" en gerelateerde queries
+- Conversie naar boekingsformulier op /contact
+
+Tone of voice:
+- "ik", nooit "wij" (één fotograaf)
+- Professioneel, warm, niet stijf
+- Geen marketingtaal of superlatieven
+- Nederlands op alle NL-pagina's, Engels op /en/*
+
+Tech:
+- Astro 4+ met TypeScript strict
+- Tailwind CSS (geen losse CSS files)
+- astro:assets voor alle images (auto AVIF/WebP, lazy loading default)
+- Content collections voor portfolio en cases
+
+SEO-regels:
+- BaseLayout op elke pagina met unieke title (max 60) en description (max 155)
+- JSON-LD: ProfessionalService + Person op homepage, Service op /aanbod, 
+  FAQPage op secties met FAQ, BreadcrumbList op subpagina's
+- areaServed = Nijmegen, geen fysiek storefront-adres
+- Eén H1 per pagina, logische H2/H3 hiërarchie
+- Beschrijvende, unieke alt-tekst per foto (geen "IMG_1234")
+- Canonical link per pagina
+- hreflang tags tussen NL en EN versies
+- Open Graph + Twitter Card met portfolio-foto als og:image
+
+Conversie-regels:
+- €300 is altijd zichtbaar en vroeg in de pagina (geen prijsverberging)
+- Eén primaire CTA per pagina: naar /contact
+- Boekingsformulier: 8 velden, geen meer
+- Reviews/testimonials met naam + faculteit + jaar (specifiek = geloofwaardig)
+- Mobile-first (70%+ verkeer is mobiel)
+
+Visuele stijl:
+- Veel witruimte, rustig
+- Serif font voor titels (Playfair Display of Merriweather)
+- Sans-serif voor body (Inter of Source Sans Pro)
+- Neutrale basis (wit/off-white) + één accent (donker rood/groen/blauw)
+- Foto's krijgen veel ruimte; layout dient de foto's, niet andersom
+
+Wat NIET:
+- Geen verwijzingen naar andere fotografie-genres (bruiloft, zakelijk, etc.)
+- Geen pop-ups, chatbots, animaties
+- Geen page builder-achtige drukke layouts
+- Geen "wij", geen stockfoto's, geen lorem ipsum bij oplevering
+
+Code-stijl:
+- Components in PascalCase, props typed via TypeScript interface
+- Geen client-side JS tenzij noodzakelijk (form submit, FAQ accordion)
+- Korte component-bestanden, splitsen bij >200 regels

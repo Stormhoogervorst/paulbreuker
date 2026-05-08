@@ -55,7 +55,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             name="naam"
             type="text"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           />
         </div>
 
@@ -69,7 +69,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             type="email"
             autocomplete="email"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           />
         </div>
 
@@ -82,7 +82,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             name="telefoon"
             type="tel"
             autocomplete="tel"
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           />
         </div>
 
@@ -98,7 +98,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             name="datum_promotie"
             type="date"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           />
         </div>
 
@@ -111,7 +111,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             name="tijdstip"
             type="time"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           />
         </div>
 
@@ -123,7 +123,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             id="locatie"
             name="locatie"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           >
             <option disabled selected value="">Maak een keuze</option>
             <option>Aula Radboud Universiteit</option>
@@ -140,7 +140,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             id="faculteit"
             name="faculteit"
             required
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           >
             <option disabled selected value="">Maak een keuze</option>
             <option>Faculteit der Letteren</option>
@@ -163,13 +163,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             name="bericht"
             rows="5"
             placeholder="Bijvoorbeeld: paranimfen, specifieke wensen, of vragen die je hebt."
-            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition placeholder:text-ink/60 focus:bg-ink focus:text-cream focus:outline-none"
+            class="w-full rounded-[10px] border border-ink bg-transparent px-4 py-4 text-ink transition placeholder:text-ink/60 focus:bg-ink focus:text-cream focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-red focus-visible:ring-offset-2 focus-visible:ring-offset-cream"
           ></textarea>
         </div>
 
         <button
           type="submit"
-          class="mt-4 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:opacity-90 transition"
+          class="mt-4 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:bg-accent-red-dark transition-colors duration-200"
         >
           Verstuur aanvraag
         </button>

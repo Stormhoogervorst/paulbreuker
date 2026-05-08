@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+@theme {
+  /* Bordeaux palet */
+  --color-bordeaux-50: #fdf2f3;
+  --color-bordeaux-100: #fbe5e7;
+  --color-bordeaux-200: #f6ccd0;
+  --color-bordeaux-300: #eea5ad;
+  --color-bordeaux-400: #e07382;
+  --color-bordeaux-500: #cc4a5d;
+  --color-bordeaux-600: #b32d44;
+  --color-bordeaux-700: #8b1d33;
+  --color-bordeaux-800: #6b1426;
+  --color-bordeaux-900: #4a0e1a;
+
+  /* Custom basiskleuren */
+  --color-ink: #1a1a1a;
+  --color-paper: #fafaf7;
+
+  /* Fonts */
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-sans: Inter, system-ui, sans-serif;
+}
+
+/* Globale defaults */
+html {
+  font-family: var(--font-sans);
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}

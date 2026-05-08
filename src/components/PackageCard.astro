@@ -22,7 +22,7 @@ const { title, price, description, features, ctaLabel = 'Boek dit pakket', ctaHr
   <ul class="mt-8 divide-y divide-ink border-y border-ink font-mono text-xs tracking-[0.04em] uppercase opacity-60">
     {features.map((feature) => <li class="flex gap-4 py-4"><span aria-hidden="true">+</span><span>{feature}</span></li>)}
   </ul>
-  <a class="mt-8 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:opacity-90 transition" href={ctaHref}>
+  <a class="mt-8 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:bg-accent-red-dark transition-colors duration-200" href={ctaHref}>
     {ctaLabel}
   </a>
 </article>

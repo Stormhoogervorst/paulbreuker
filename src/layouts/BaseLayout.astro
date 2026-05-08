@@ -68,6 +68,13 @@ const footerNavItems = [
   { href: '/privacy', label: 'Privacy' },
   { href: '/algemene-voorwaarden', label: 'Algemene voorwaarden' },
 ];
+
+// Bepaal welk navigatie-item de huidige pagina is, voor de actieve-state indicator.
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => {
+  const normalized = href.replace(/\/$/, '') || '/';
+  return currentPath === normalized;
+};
 ---
 
 <!doctype html>
@@ -141,14 +148,25 @@ const footerNavItems = [
           <!-- Desktop navigatie -->
           <nav class="hidden items-center gap-7 font-mono text-[13px] uppercase tracking-[0.04em] md:flex" aria-label="Hoofdnavigatie">
             {
-              navItems.map((item) => (
-                <a class="transition hover:opacity-60" href={item.href}>
-                  {item.label}
-                </a>
-              ))
+              navItems.map((item) => {
+                const active = isActive(item.href);
+                return (
+                  <a
+                    class:list={[
+                      'transition hover:opacity-60',
+                      active &&
+                        'border-b-2 border-accent-red pb-[2px] -mb-[2px]',
+                    ]}
+                    href={item.href}
+                    aria-current={active ? 'page' : undefined}
+                  >
+                    {item.label}
+                  </a>
+                );
+              })
             }
             <a
-              class="rounded-[10px] bg-ink px-6 py-3 text-cream transition hover:opacity-80"
+              class="rounded-[10px] bg-ink px-6 py-3 text-cream transition-colors duration-200 hover:bg-accent-red-dark"
               href="/contact"
             >
               Vraag beschikbaarheid aan
@@ -162,7 +180,7 @@ const footerNavItems = [
             aria-label="Menu openen"
             aria-controls="mobile-menu"
             aria-expanded="false"
-            class="md:hidden w-11 h-11 border border-ink rounded-full flex items-center justify-center font-mono text-xs tracking-[0.04em] uppercase hover:bg-ink hover:text-cream transition"
+            class="md:hidden w-11 h-11 border border-ink rounded-full flex items-center justify-center font-mono text-xs tracking-[0.04em] uppercase hover:bg-accent-red-dark hover:text-cream hover:border-accent-red-dark transition-colors duration-200"
           >
             <span class="menu-text-open">Menu</span>
             <span class="menu-text-close hidden">Sluit</span>
@@ -179,31 +197,33 @@ const footerNavItems = [
         aria-label="Hoofdnavigatie"
       >
         <nav class="flex flex-col px-6 pt-8 pb-4">
-          <a
-            href="/aanbod"
-            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
-          >
-            Aanbod
-          </a>
-          <a
-            href="/over"
-            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
-          >
-            Over
-          </a>
-          <a
-            href="/contact"
-            class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition"
-          >
-            Contact
-          </a>
+          {
+            navItems.map((item) => {
+              const active = isActive(item.href);
+              return (
+                <a
+                  href={item.href}
+                  aria-current={active ? 'page' : undefined}
+                  class="font-mono text-sm tracking-[0.04em] uppercase py-4 border-b border-ink/10 hover:opacity-60 transition flex items-center gap-3"
+                >
+                  {active && (
+                    <span
+                      class="inline-block h-1.5 w-1.5 rounded-full bg-accent-red"
+                      aria-hidden="true"
+                    />
+                  )}
+                  {item.label}
+                </a>
+              );
+            })
+          }
         </nav>
 
         <!-- Footer area in drawer -->
         <div class="px-6 py-6 border-t border-ink/10 mt-4">
           <a
             href="/contact"
-            class="block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-4 rounded-[10px] text-center hover:opacity-90 transition"
+            class="block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-4 rounded-[10px] text-center hover:bg-accent-red-dark transition-colors duration-200"
           >
             Vraag beschikbaarheid aan
           </a>
@@ -218,7 +238,7 @@ const footerNavItems = [
 
     <!-- Footer -->
     <slot name="footer">
-      <footer class="border-t border-ink bg-cream">
+      <footer class="border-t-2 border-accent-red bg-cream">
         <div class="mx-auto max-w-[1440px] px-6 py-16 md:px-16">
           <div class="grid gap-10 md:grid-cols-4 md:divide-x md:divide-ink">
             <section>
