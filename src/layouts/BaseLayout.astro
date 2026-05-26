@@ -15,16 +15,22 @@ const {
   title,
   description,
   image = '/og-default.jpg',
-  canonical = Astro.url.href,
+  canonical,
   noindex = false,
   lang = 'nl',
   alternateUrl,
 } = Astro.props;
 
-const ogImage = new URL(image, Astro.url).href;
-const currentUrl = canonical;
-const nlUrl = lang === 'nl' ? currentUrl : alternateUrl;
-const enUrl = lang === 'en' ? currentUrl : alternateUrl;
+const siteUrl = Astro.site ?? new URL('https://www.fotograafpromotiesradboud.nl');
+const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).href;
+const ogImage = new URL(image, siteUrl).href;
+const currentUrl = canonicalUrl;
+const nlUrl =
+  lang === 'nl'
+    ? currentUrl
+    : alternateUrl
+      ? new URL(alternateUrl, siteUrl).href
+      : undefined;
 const ogLocale = lang === 'nl' ? 'nl_NL' : 'en_US';
 const currentYear = new Date().getFullYear();
 
@@ -34,7 +40,7 @@ const professionalServiceSchema = {
   name: 'Fotograaf Promotie Radboud',
   description:
     'Gespecialiseerde fotografie van promoties aan de Radboud Universiteit Nijmegen',
-  url: 'https://fotograafpromotieradboud.nl',
+  url: siteUrl.origin,
   image: [ogImage],
   serviceType: 'Promotion photography',
   areaServed: {
@@ -82,14 +88,13 @@ const isActive = (href: string) => {
     <title>{title}</title>
     <meta name="description" content={description} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="canonical" href={canonical} />
+    <link rel="canonical" href={canonicalUrl} />
 
     <!-- Hreflang alternates -->
     {
-      alternateUrl && nlUrl && enUrl && (
+      nlUrl && (
         <>
           <link rel="alternate" hreflang="nl-NL" href={nlUrl} />
-          <link rel="alternate" hreflang="en" href={enUrl} />
           <link rel="alternate" hreflang="x-default" href={nlUrl} />
         </>
       )
@@ -100,7 +105,7 @@ const isActive = (href: string) => {
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={canonical} />
+    <meta property="og:url" content={canonicalUrl} />
     <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter Card -->
@@ -138,7 +143,7 @@ const isActive = (href: string) => {
               <span class="border border-ink"></span>
               <span class="bg-ink"></span>
             </span>
-            <span>Promotie fotograaf Radboud</span>
+            <span>Paul Breuker</span>
           </a>
 
           <!-- Desktop navigatie -->
