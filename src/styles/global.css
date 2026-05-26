@@ -12,11 +12,6 @@
 }
 
 @layer base {
-  html,
-  body {
-    overflow-x: clip;
-  }
-
   html {
     background: #faf7ee;
   }
