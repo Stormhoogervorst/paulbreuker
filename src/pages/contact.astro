@@ -4,7 +4,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 <BaseLayout
   title="Contact | Fotograaf Promotie Radboud"
-  description="Doe een aanvraag voor de fotografie van je promotie aan de Radboud Universiteit. Reactie binnen 24 uur."
+  description="Vraag beschikbaarheid aan voor je Radboud-promotie. 3 uur fotografie t/m receptie, 130 foto's binnen 1 week. Reactie binnen 24 uur."
   alternateUrl="https://fotograafpromotieradboud.nl/en/contact/"
 >
   <!-- SECTIE 1: PAGE HEADER -->
@@ -16,7 +16,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </h1>
       <p class="mt-8 text-[17px] leading-[1.55]">
         Vul hieronder de details van je promotie in. Ik check je datum in de agenda en reageer
-        binnen vierentwintig uur — meestal sneller. Geen automatische antwoorden, ik lees alle
+        binnen 24 uur, vaak eerder. Geen automatische antwoorden, ik lees alle
         berichten zelf.
       </p>
     </div>
@@ -30,7 +30,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         method="POST"
         class="space-y-6 md:col-span-2"
       >
-        <input type="hidden" name="access_key" value="VERVANG_DOOR_ACCESS_KEY" />
+        <input type="hidden" name="access_key" value="98cd5d83-66f0-44b2-bc36-ef89e468e7fe" />
         <input
           type="hidden"
           name="subject"
@@ -173,15 +173,6 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         >
           Verstuur aanvraag
         </button>
-
-        <p class="max-w-2xl text-xs leading-relaxed">
-          Door te versturen ga je akkoord dat ik je gegevens gebruik om op je aanvraag te reageren.
-          Zie de
-          <a href="/privacy" class="underline underline-offset-4 transition hover:opacity-60">
-            privacyverklaring
-          </a>
-          voor details.
-        </p>
       </form>
 
       <aside class="space-y-8 md:sticky md:top-24 md:self-start">
@@ -222,8 +213,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <div class="border-l border-ink pl-6">
           <h3 class="text-xl font-medium">Reactietijd</h3>
           <p class="mt-3 text-sm leading-relaxed">
-            Ik reageer binnen 24 uur, doorgaans sneller. Op vakantiedagen kan dit langer duren —
-            dan vermeld ik dat hier.
+            Binnen 24 uur reactie, vaak eerder. Op vakantiedagen kan dit langer duren — dan
+            vermeld ik dat hier.
           </p>
         </div>
       </aside>
@@ -237,7 +228,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <div class="mt-12 grid gap-10 text-left md:grid-cols-3">
         <article>
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">01</span>
-          <h3 class="mt-2 text-lg font-medium">Reactie binnen 24 uur</h3>
+          <h3 class="mt-2 text-lg font-medium">Binnen 24 uur reactie, vaak eerder</h3>
           <p class="mt-2 text-sm leading-relaxed">
             Ik bevestig je aanvraag en stel een paar korte vragen als ik die heb.
           </p>
@@ -251,9 +242,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </article>
         <article>
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">03</span>
-          <h3 class="mt-2 text-lg font-medium">Reservering</h3>
+          <h3 class="mt-2 text-lg font-medium">Reservering en betaling</h3>
           <p class="mt-2 text-sm leading-relaxed">
-            Datum staat vast, geen aanbetaling. Een korte bevestigingsmail volgt.
+            Datum staat vast, geen aanbetaling. Je betaalt €230 contant na de receptie, of €278,30
+            incl. btw via factuur na ontvangst van de foto's.
           </p>
         </article>
       </div>

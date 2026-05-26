@@ -49,10 +49,12 @@ const professionalServiceSchema = {
     telephone: '+31651475406',
   },
   offers: {
-    '@type': 'Offer',
-    price: '300',
+    '@type': 'AggregateOffer',
+    lowPrice: '230',
+    highPrice: '278.30',
     priceCurrency: 'EUR',
-    description: "Vast pakket: 2 uur fotografie, 100 nabewerkte foto's",
+    offerCount: 2,
+    description: "Vast pakket: 3 uur fotografie, 130 rechtenvrije foto's binnen 1 week",
   },
   sameAs: [],
 };
@@ -61,12 +63,6 @@ const navItems = [
   { href: '/aanbod', label: 'Aanbod' },
   { href: '/over', label: 'Over' },
   { href: '/contact', label: 'Contact' },
-];
-
-const footerNavItems = [
-  ...navItems,
-  { href: '/privacy', label: 'Privacy' },
-  { href: '/algemene-voorwaarden', label: 'Algemene voorwaarden' },
 ];
 
 // Bepaal welk navigatie-item de huidige pagina is, voor de actieve-state indicator.
@@ -240,7 +236,7 @@ const isActive = (href: string) => {
     <slot name="footer">
       <footer class="border-t-2 border-accent-red bg-cream">
         <div class="mx-auto max-w-[1440px] px-6 py-16 md:px-16">
-          <div class="grid gap-10 md:grid-cols-4 md:divide-x md:divide-ink">
+          <div class="grid gap-10 md:grid-cols-3 md:divide-x md:divide-ink">
             <section>
               <h3 class="text-2xl font-medium uppercase leading-none tracking-tight">
                 Promotie<br />Radboud
@@ -281,18 +277,6 @@ const isActive = (href: string) => {
               </ul>
             </section>
 
-            <section class="md:pl-10">
-              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Documenten</h3>
-              <ul class="mt-5 space-y-3 font-mono text-[13px] uppercase tracking-[0.04em]">
-                {footerNavItems.slice(navItems.length).map((item) => (
-                  <li>
-                    <a class="transition hover:opacity-60" href={item.href}>
-                      {item.label}
-                    </a>
-                  </li>
-                ))}
-              </ul>
-            </section>
           </div>
 
           <div

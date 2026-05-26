@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
-import foto2 from '../assets/portfolio/foto-2.jpg';
-import foto4 from '../assets/portfolio/foto-4.jpg';
+import zweetkamertje2 from '../assets/portfolio/zweetkamertje-2.jpg';
+import kleinKind from '../assets/portfolio/klein-kind.jpg';
 
 const serviceSchema = {
   '@context': 'https://schema.org',
   '@type': 'Service',
   name: 'Promotiefotografie Radboud Universiteit',
   description:
-    "Vast pakket voor de fotografie van een promotie aan de Radboud Universiteit Nijmegen: 2 uur aanwezigheid, 100 nabewerkte foto's.",
+    "Vast pakket voor de fotografie van een promotie aan de Radboud Universiteit Nijmegen: 3 uur aanwezigheid, 130 rechtenvrije foto's binnen 1 week.",
   provider: {
     '@type': 'Person',
     name: 'Paul Breuker',
@@ -21,51 +21,58 @@ const serviceSchema = {
     name: 'Nijmegen',
   },
   offers: {
-    '@type': 'Offer',
-    price: '300',
+    '@type': 'AggregateOffer',
+    lowPrice: '230',
+    highPrice: '278.30',
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
-    validFrom: '2025-01-01',
+    offerCount: 2,
   },
 };
 
 const timelineItems = [
   {
-    time: '30 minuten voor aanvang',
-    title: 'In het zweetkamertje',
+    time: '45 minuten voor aanvang',
+    title: 'Cella Sudatoria',
     description:
-      'Een korte begroeting, geen lange instructies. Ik leg de spanning, de paranimfen, de ouders en de eerste rituelen vast.',
+      "Ik neem je mee naar het zweetkamertje. Daar zet je je handtekening op de muur en maak ik portretten van jou en je paranimfen.",
   },
   {
-    time: 'Aanvang verdediging',
-    title: 'De ceremonie',
+    time: 'Voor en tijdens de verdediging',
+    title: 'Pedel en verdediging',
     description:
-      'Binnenkomst van de pedel, het lekenpraatje, de oppositie, vragen vanuit de commissie. Ik beweeg ingetogen door de zaal en let op het protocol.',
+      'Daarna volgen de instructies van de pedel en de verdediging zelf. Ik ken de regels rond beweging, geluid en timing.',
   },
   {
     time: 'Hora est',
-    title: 'Het moment',
+    title: 'Diploma en bul',
     description:
-      'Het belangrijkste signaal van de dag. De pedel klopt af, de commissie trekt zich terug. Ik leg de reactie van promovendus en familie vast.',
+      "Na 'hora est' leg ik de handtekeningen van rector en promotoren vast. Als vaste fotograaf mag ik ook foto's maken van het ondertekenen van het diploma.",
   },
   {
-    time: 'Uitreiking bul',
-    title: 'Laudatio en ondertekening',
+    time: 'Op de trap',
+    title: 'Groepsfoto corona',
     description:
-      'Het toespraakje van de promotor, het ondertekenen van de bul, de eerste handdruk. Klassieke momenten die elke promovendus terugziet.',
+      'Op weg naar de felicitaties maken we een groepsfoto van de voltallige corona samen met jou en je paranimfen.',
   },
   {
-    time: 'Eerste felicitaties',
-    title: "Familie en collega's",
+    time: 'Na de verdediging',
+    title: 'Felicitaties',
     description:
-      "De spontane omhelzingen, het bloemenboeket, de groepsfoto's met paranimfen en familie. Hier eindigt het pakket.",
+      "Daarna is er ruimte voor foto's met familie, vrienden en promotoren. Ik help om dat rustig te laten verlopen.",
+  },
+  {
+    time: 'Tot en met de receptie',
+    title: 'Receptie',
+    description:
+      'De receptie zit in het pakket. Ik blijf 3 uur aanwezig, zodat ook de gesprekken en informele momenten worden vastgelegd.',
   },
 ];
 ---
 
 <BaseLayout
   title="Aanbod & Tarief | Fotograaf Promotie Radboud"
-  description="Het pakket kost €300, alles inbegrepen. 2 uur fotografie op je promotiedag, 100 nabewerkte foto's, levering binnen 2 weken."
+  description="Promotiefotografie Radboud: 3 uur aanwezig t/m receptie, 130 rechtenvrije foto's binnen 1 week. €230 contant of €278,30 incl. btw."
   alternateUrl="https://fotograafpromotieradboud.nl/en/services/"
 >
   <script slot="schema" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
@@ -81,8 +88,7 @@ const timelineItems = [
           Helder geprijsd.
         </h1>
         <p class="md:col-span-4 text-[17px] text-ink/70 leading-relaxed md:pb-3">
-          Geen pakketmatrix, geen meerprijsjes voor extra foto's. Een simpel aanbod waarvan ik weet
-          dat het voor de meeste promoties precies past.
+          Geen pakketmatrix. Een helder aanbod voor de verdediging, felicitaties en receptie.
         </p>
       </div>
     </div>
@@ -91,8 +97,8 @@ const timelineItems = [
   <section class="mx-auto max-w-[1440px] px-6 pb-24 md:px-16 md:pb-32">
     <div class="overflow-hidden rounded-2xl">
       <Image
-        src={foto2}
-        alt="Promovendus tijdens de verdediging aan de Radboud Universiteit"
+        src={zweetkamertje2}
+        alt="Promovendus en paranimfen in het zweetkamertje vlak voor de verdediging aan de Radboud Universiteit"
         class="h-full w-full aspect-[16/10] rounded-2xl object-cover"
         widths={[800, 1200, 1600]}
         sizes="100vw"
@@ -105,7 +111,7 @@ const timelineItems = [
   <!-- SECTIE 2: HET PAKKET -->
   <section class="border-t border-ink py-24 md:py-32">
     <div class="mx-auto max-w-[1440px] px-6 md:px-16">
-      <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16 items-start">
+      <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16">
         <div class="md:col-span-7">
           <p class="mb-12 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
             Wat je krijgt
@@ -117,10 +123,9 @@ const timelineItems = [
                 01
               </span>
               <div class="flex-1">
-                <p class="text-xl md:text-2xl font-medium leading-tight">2 uur aanwezigheid</p>
+                <p class="text-xl md:text-2xl font-medium leading-tight">3 uur aanwezigheid</p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Vanaf circa 30 minuten voor aanvang van de verdediging tot na de eerste
-                  felicitaties.
+                  Vanaf 45 minuten voor aanvang van de verdediging tot en met de receptie.
                 </p>
               </div>
             </li>
@@ -131,11 +136,11 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  Volledige ceremonie vastgelegd
+                  Volledige promotiedag vastgelegd
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Voorbereidingen in het zweetkamertje, de verdediging, hora est, de uitreiking van
-                  de bul, en de eerste felicitaties.
+                  Cella Sudatoria, instructies van de pedel, verdediging, hora est, bul,
+                  groepsfoto, felicitaties en receptie.
                 </p>
               </div>
             </li>
@@ -146,11 +151,11 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  100 zorgvuldig geselecteerde foto's
+                  130 zorgvuldig geselecteerde foto's
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Uit de honderden opnames selecteer en bewerk ik er honderd. Geen volledige
-                  bulkdrop.
+                  Ik maak een selectie en bewerk de foto's op kleur en contrast. De foto's worden
+                  rechtenvrij geleverd.
                 </p>
               </div>
             </li>
@@ -161,10 +166,10 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  Levering in kleur en zwart-wit
+                  Levering in kleur
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Beide versies in hoge resolutie, geschikt voor afdrukken en digitaal delen.
+                  Standaard in kleur. Zwart-wit is mogelijk tegen €50 meerprijs.
                 </p>
               </div>
             </li>
@@ -175,10 +180,11 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  Persoonlijke online galerij
+                  Levering via WeTransfer
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Eigen pagina met wachtwoord. Foto's te downloaden in hoge en lage resolutie.
+                  Je krijgt hoge resolutie voor afdrukken en lage resolutie om makkelijk door te
+                  sturen.
                 </p>
               </div>
             </li>
@@ -189,41 +195,42 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  Reiskosten & BTW inbegrepen
+                  Twee betaalopties
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  Reiskosten binnen Nijmegen zitten in het pakket. De prijs die je ziet is de prijs
-                  die je betaalt.
+                  €230 contant na de receptie. Of €278,30 incl. btw via factuur, per mail na
+                  ontvangst van de foto's.
                 </p>
               </div>
             </li>
           </ul>
         </div>
 
-        <div class="md:col-span-5">
-          <div class="md:sticky md:top-32">
-            <p class="mb-8 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
-              Investering
-            </p>
+        <aside class="md:col-span-5 md:sticky md:top-32 md:self-start">
+          <p class="mb-8 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+            Investering
+          </p>
 
-            <p class="text-6xl md:text-7xl font-medium leading-none">€300</p>
+          <p class="text-6xl md:text-7xl font-medium leading-none">€230</p>
 
-            <p class="mt-4 text-[15px] text-ink/70">Het pakket. Alles inbegrepen.</p>
+          <p class="mt-4 text-[15px] text-ink/70">
+            Contant na de receptie. Of €278,30 incl. btw via factuur, per mail na ontvangst van de
+            foto's.
+          </p>
 
-            <div class="border-t border-ink/20 my-10"></div>
+          <div class="border-t border-ink/20 my-10"></div>
 
-            <a
-              href="/contact"
-              class="inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-8 py-4 rounded-[10px] hover:bg-accent-red-dark transition-colors duration-200"
-            >
-              Vraag beschikbaarheid aan
-            </a>
+          <a
+            href="/contact"
+            class="inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-8 py-4 rounded-[10px] hover:opacity-90 transition"
+          >
+            Vraag beschikbaarheid aan
+          </a>
 
-            <p class="mt-6 font-mono text-[11px] tracking-[0.04em] uppercase opacity-50">
-              Geen aanbetaling — betaling na levering
-            </p>
-          </div>
-        </div>
+          <p class="mt-6 font-mono text-[11px] tracking-[0.04em] uppercase opacity-50">
+            Geen aanbetaling
+          </p>
+        </aside>
       </div>
     </div>
   </section>
@@ -237,8 +244,8 @@ const timelineItems = [
           Een typische promotie, in fasen
         </h2>
         <p class="mt-8 max-w-2xl text-[17px] leading-[1.55]">
-          Geen promotie is hetzelfde, maar de structuur is dat wel. Hieronder hoe een doorsnee dag
-          eruitziet en wanneer ik welke momenten vastleg.
+          Geen promotie is hetzelfde, maar het ritueel is vertrouwd. Hieronder zie je hoe ik je door
+          de dag meeneem.
         </p>
       </div>
     </div>
@@ -263,8 +270,8 @@ const timelineItems = [
     <div class="grid items-end gap-8 border-t border-ink pt-10 md:grid-cols-12">
       <div class="overflow-hidden rounded-2xl md:col-span-7">
         <Image
-          src={foto4}
-          alt="Promotieceremonie aan de Radboud Universiteit, moment na uitreiking bul"
+          src={kleinKind}
+          alt="Klein kind aanwezig bij de promotie van een ouder aan de Radboud Universiteit"
           class="h-full w-full aspect-[4/5] rounded-2xl object-cover md:aspect-[4/3]"
           widths={[400, 800, 1200]}
           sizes="(max-width: 768px) 100vw, 60vw"
@@ -273,11 +280,11 @@ const timelineItems = [
       <div class="md:col-span-5">
         <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Radboud protocol</p>
         <h2 class="mt-6 text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
-          Rustig aanwezig. Niets forceren.
+          Rustig aanwezig. Wel betrokken.
         </h2>
         <p class="mt-8 max-w-md text-[17px] leading-[1.55]">
-          Tijdens de ceremonie werk ik ingetogen door de zaal. De pedel, de commissie en het
-          verloop van de verdediging krijgen altijd voorrang.
+          Tijdens de ceremonie werk ik ingetogen door de zaal. Voor en na de verdediging begeleid ik
+          je naar de vaste momenten, zodat je weet wat er komt.
         </p>
       </div>
     </div>
@@ -289,30 +296,50 @@ const timelineItems = [
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Levering</p>
       <div>
         <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
-          Binnen twee weken in je inbox
+          Binnen 1 week in je inbox
         </h2>
         <div class="mt-8 max-w-3xl space-y-5 text-[17px] leading-[1.55]">
           <p>
-            Ik werk niet met spoedlevering of hoge meerprijs voor 'rush jobs'. Iedere promovendus
-            krijgt dezelfde behandeling: zorgvuldige selectie, consistente nabewerking, levering
-            binnen twee weken na de promotiedatum.
+            Ik selecteer de foto's zorgvuldig en bewerk ze op kleur en contrast. Binnen 1 week na de
+            promotie ontvang je een mail van mij dat de bestanden onderweg zijn via WeTransfer.
           </p>
           <p>
-            Je ontvangt een link naar een persoonlijke online galerij, beveiligd met een
-            wachtwoord. Daar staan alle foto's in hoge en lage resolutie, gegroepeerd per fase van
-            de dag. Familie en vrienden kun je toegang geven door simpelweg de link te delen.
+            Je krijgt de foto's in hoge en lage resolutie. De lage resolutie is handig om door te
+            sturen naar familie en vrienden. De hoge resolutie is geschikt voor afdrukken.
           </p>
         </div>
         <div class="mt-12 grid border-y border-ink font-mono text-xs tracking-[0.04em] uppercase opacity-60 md:grid-cols-3 md:divide-x md:divide-ink">
           <p class="py-5 md:px-6">Hoge resolutie</p>
           <p class="border-t border-ink py-5 md:border-t-0 md:px-6">Lage resolutie</p>
-          <p class="border-t border-ink py-5 md:border-t-0 md:px-6">Wachtwoordgalerij</p>
+          <p class="border-t border-ink py-5 md:border-t-0 md:px-6">Rechtenvrij</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- SECTIE 6: SLOT CTA -->
+  <!-- SECTIE 6: EXTRA MOGELIJK -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Extra mogelijk</p>
+      <div>
+        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+          Voor na de promotie
+        </h2>
+        <div class="mt-8 max-w-3xl space-y-5 text-[17px] leading-[1.55]">
+          <p>
+            Wil je ook een feestje of diner laten fotograferen, 's avonds of op een ander moment?
+            Dat kan op aanvraag.
+          </p>
+          <p>
+            Afdrukken zijn mogelijk in elk gewenst formaat. Ik kan ook een strak vormgegeven
+            fotoboek maken, in diverse formaten.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTIE 7: SLOT CTA -->
   <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
     <div class="border-y border-ink py-16 text-center md:py-20">
       <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">Beschikbaarheid</p>
@@ -320,8 +347,7 @@ const timelineItems = [
         Klaar om je datum vast te leggen?
       </h2>
       <p class="mx-auto mt-8 max-w-xl text-[17px] leading-[1.55]">
-        Stuur me de details van je promotie. Ik bevestig binnen vierentwintig uur of de datum nog
-        beschikbaar is.
+        Stuur me de details van je promotie. Binnen 24 uur reactie, vaak eerder.
       </p>
       <a
         href="/contact"
@@ -331,4 +357,5 @@ const timelineItems = [
       </a>
     </div>
   </section>
+
 </BaseLayout>

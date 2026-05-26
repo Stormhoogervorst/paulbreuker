@@ -1,11 +1,11 @@
 ---
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import foto1 from '../assets/portfolio/foto-1.jpg';
-import foto2 from '../assets/portfolio/foto-2.jpg';
-import foto3 from '../assets/portfolio/foto-3.jpg';
-import foto4 from '../assets/portfolio/foto-4.jpg';
-import foto5 from '../assets/portfolio/foto-5.jpg';
+import binnenlopen from '../assets/portfolio/binnenlopen.jpg';
+import zweetkamertje from '../assets/portfolio/zweetkamertje.jpg';
+import knuffel from '../assets/portfolio/knuffel.jpg';
+import shotje from '../assets/portfolio/shotje.jpg';
+import voorbereiding from '../assets/portfolio/voorbereiding.jpg';
 
 interface FaqItem {
   question: string;
@@ -15,20 +15,22 @@ interface FaqItem {
 const faqItems: FaqItem[] = [
   {
     question: 'Hoe lang ben je aanwezig op de promotiedag?',
-    answer: 'Twee uur, vanaf circa dertig minuten voor aanvang van de verdediging.',
+    answer: '3 uur, vanaf 45 minuten voor aanvang van de verdediging tot en met de receptie.',
   },
   {
     question: "Wanneer ontvang ik de foto's?",
-    answer: 'Binnen twee weken na de promotie, via een persoonlijke online galerij.',
+    answer:
+      "Binnen 1 week. Je ontvangt een mail van mij zodra de foto's via WeTransfer onderweg zijn.",
   },
   {
     question: "Hoeveel foto's krijg ik?",
-    answer: "Honderd zorgvuldig geselecteerde en nabewerkte foto's, in kleur en zwart-wit.",
+    answer:
+      "Rond de 130 zorgvuldig geselecteerde foto's, standaard in kleur. Zwart-wit kan tegen €50 meerprijs.",
   },
   {
     question: 'Mag je in de Aula fotograferen tijdens de verdediging?',
     answer:
-      'Ja. Ik werk volgens het Radboud-protocol en ken de regels rond pedel, beweging en geluid.',
+      "Ja. Ik ken het Radboud-protocol. Als vaste fotograaf mag ik ook foto's maken van het ondertekenen van het diploma.",
   },
   {
     question: 'Hoe ver van tevoren kan ik boeken?',
@@ -40,11 +42,13 @@ const faqItems: FaqItem[] = [
   },
   {
     question: 'Wat kost het?',
-    answer: 'Het pakket kost €300, alles inbegrepen. Geen verborgen kosten.',
+    answer:
+      "€230 bij contante betaling na de receptie. Of €278,30 incl. btw via factuur, per mail na ontvangst van de foto's.",
   },
   {
     question: "Maak je ook foto's van de receptie of het diner?",
-    answer: 'Het standaardpakket dekt twee uur. Een uitbreiding is in overleg mogelijk.',
+    answer:
+      "Ja. De receptie zit in het pakket. Feestjes en diners 's avonds of op een ander moment zijn op aanvraag mogelijk.",
   },
 ];
 
@@ -64,7 +68,7 @@ const faqSchema = {
 
 <BaseLayout
   title="Promotiefotografie aan de Radboud Universiteit | Nijmegen"
-  description="Ingetogen, professionele fotografie van je promotie aan de Radboud Universiteit. Specialist in het Radboud-protocol. Vraag beschikbaarheid aan."
+  description="Promotiefotografie Radboud: 3 uur aanwezig t/m receptie, 130 rechtenvrije foto's binnen 1 week. €230 contant of €278,30 incl. btw."
   alternateUrl="https://fotograafpromotieradboud.nl/en/"
   image="/og-home.jpg"
 >
@@ -81,13 +85,13 @@ const faqSchema = {
         De fotograaf voor je promotie.
       </h1>
       <p class="md:col-span-4 text-[17px] leading-[1.55] md:pb-3">
-        Jouw speciale moment vakkundig vastgelegd
+        Ik begeleid je rustig door de dag en leg de vaste momenten zorgvuldig vast.
       </p>
     </div>
     <div class="mt-12 overflow-hidden rounded-2xl">
       <Image
-        src={foto1}
-        alt="Promotie aan de Radboud Universiteit"
+        src={binnenlopen}
+        alt="Promovendus loopt de Aula van de Radboud Universiteit binnen voor de verdediging"
         class="h-full w-full aspect-[16/10] rounded-2xl object-cover"
         widths={[800, 1200, 1920, 2400]}
         sizes="100vw"
@@ -106,9 +110,9 @@ const faqSchema = {
         Fotografie van Radboud promoties.
         </h2>
         <p class="mt-8 max-w-3xl text-[17px] leading-[1.55]">
-        Een promotie laat zich niet overdoen. De spanning in het zweetkamertje, het moment van
-        'hora est', de eerste felicitaties — het zijn vluchtige momenten. Mijn werk is om er onopvallend
-        bij te zijn en het ongedwongen vast te leggen.
+        Een promotie laat zich niet overdoen. De handtekening in de Cella Sudatoria, het moment van
+        'hora est', de groepsfoto op de trap en de receptie volgen elkaar snel op. Ik ken dat ritueel
+        en neem je er rustig doorheen.
         </p>
       </div>
     </div>
@@ -125,8 +129,8 @@ const faqSchema = {
     <div class="mt-16 grid grid-cols-2 gap-3 md:grid-cols-12 md:gap-8">
         <div class="col-span-1 aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:col-span-7 md:row-span-2">
           <Image
-            src={foto2}
-            alt="Promovendus tijdens verdediging in de Aula van de Radboud Universiteit"
+            src={zweetkamertje}
+            alt="Promovendus in het zweetkamertje vlak voor de verdediging aan de Radboud Universiteit"
             class="h-full w-full aspect-[4/5] rounded-2xl object-cover transition duration-700 hover:scale-105 md:aspect-auto"
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -134,8 +138,8 @@ const faqSchema = {
         </div>
         <div class="col-span-1 aspect-[4/5] overflow-hidden rounded-2xl md:aspect-auto md:col-span-5">
           <Image
-            src={foto3}
-            alt="Moment na uitreiking bul, Academiegebouw Nijmegen"
+            src={knuffel}
+            alt="Eerste omhelzing na de uitreiking van de bul in het Academiegebouw Nijmegen"
             class="h-full w-full aspect-[4/5] rounded-2xl object-cover transition duration-700 hover:scale-105 md:aspect-auto"
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -143,8 +147,8 @@ const faqSchema = {
         </div>
         <div class="col-span-2 aspect-[3/2] overflow-hidden rounded-2xl md:aspect-auto md:col-span-5">
           <Image
-            src={foto4}
-            alt="Eerste felicitaties tijdens promotieceremonie Radboud"
+            src={shotje}
+            alt="Promovendus en collega's heffen het glas na een geslaagde promotie aan de Radboud"
             class="h-full w-full aspect-[4/5] rounded-2xl object-cover transition duration-700 hover:scale-105 md:aspect-auto"
             widths={[400, 800, 1200]}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -173,12 +177,12 @@ const faqSchema = {
           <div class="mt-8 space-y-5">
             <p class="text-[15px] md:text-[17px] leading-relaxed">
               Ik fotografeer promoties aan de Radboud Universiteit met aandacht voor rust, timing
-              en de kleine momenten die later vaak het meest waardevol blijken.
+              en duidelijke begeleiding. Veel promovendi ervaren dat als prettig op een drukke dag.
             </p>
             <p class="text-[15px] md:text-[17px] leading-relaxed">
               De Aula, het Academiegebouw, de pedel en het protocol zijn vertrouwd terrein. Ik weet
-              wanneer ik kan bewegen, wanneer ik afstand houd en hoe ik aanwezig ben zonder de
-              ceremonie te verstoren.
+              wanneer ik kan bewegen, wanneer ik afstand houd en wanneer ik je even meeneem voor
+              portretten of een groepsfoto.
             </p>
           </div>
           <a
@@ -190,8 +194,8 @@ const faqSchema = {
         </div>
         <div class="md:col-span-7 order-2">
           <Image
-            src={foto5}
-            alt="Detail van een promotieceremonie aan de Radboud"
+            src={voorbereiding}
+            alt="Stil moment van voorbereiding voor de promotieceremonie in het Academiegebouw van de Radboud"
             class="w-full aspect-[3/2] object-cover rounded-2xl"
             widths={[400, 800]}
             sizes="(max-width: 768px) 100vw, 50vw"
@@ -229,16 +233,16 @@ const faqSchema = {
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">03</span>
           <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">De dag zelf</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
-            Ik ben dertig minuten voor aanvang aanwezig en werk twee uur door, van zweetkamertje
-            tot eerste felicitaties.
+            Ik ben 45 minuten voor aanvang aanwezig en werk 3 uur door, van Cella Sudatoria tot en
+            met de receptie.
           </p>
         </li>
         <li class="py-8 md:px-8">
           <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">04</span>
           <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">Levering</h3>
           <p class="mt-4 text-[15px] leading-[1.5]">
-            Binnen twee weken ontvang je honderd zorgvuldig geselecteerde en nabewerkte foto's via
-            een persoonlijke online galerij.
+            Binnen 1 week ontvang je rond de 130 zorgvuldig geselecteerde foto's via WeTransfer,
+            in hoge en lage resolutie.
           </p>
         </li>
       </ol>
@@ -253,13 +257,13 @@ const faqSchema = {
         Het pakket. Helder geprijsd.
         </h2>
         <p class="mt-8 max-w-2xl text-[17px] leading-[1.55]">
-        Ik werk met een vast aanbod, zodat je vooraf precies weet wat je krijgt. Twee uur
-        aanwezigheid op je promotiedag, honderd zorgvuldig nabewerkte foto's, geleverd binnen twee
-        weken via een persoonlijke online galerij. Reiskosten binnen Nijmegen en BTW inbegrepen.
+        Ik werk met een vast aanbod, zodat je vooraf precies weet wat je krijgt. 3 uur aanwezigheid
+        op je promotiedag, rond de 130 rechtenvrije foto's in kleur, geleverd binnen 1 week via
+        WeTransfer. Zwart-wit is mogelijk tegen €50 meerprijs.
         </p>
         <div class="mt-10 inline-flex flex-wrap items-baseline gap-3 border-y border-ink py-6 pr-6 md:pr-12">
-          <span class="text-5xl font-medium leading-none tracking-[-0.02em]">€300</span>
-          <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">alles inbegrepen</span>
+          <span class="text-5xl font-medium leading-none tracking-[-0.02em]">€230</span>
+          <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">contant na receptie · €278,30 incl. btw via factuur</span>
         </div>
         <a
           href="/aanbod"
@@ -303,8 +307,7 @@ const faqSchema = {
         Klaar om je datum te reserveren?
       </h2>
       <p class="mx-auto mt-8 max-w-xl text-[17px] leading-[1.55]">
-        Vul het aanvraagformulier in. Ik check je datum en kom binnen vierentwintig uur bij je
-        terug.
+        Vul het aanvraagformulier in. Binnen 24 uur reactie, vaak eerder.
       </p>
       <a
         href="/contact"
