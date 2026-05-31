@@ -1,0 +1,40 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const description =
+  'Deze pagina bestaat niet of is verplaatst. Ga terug naar de homepage of bekijk het aanbod.';
+---
+
+<BaseLayout
+  title="Pagina niet gevonden | Paul Breuker"
+  description={description}
+  canonical="https://www.fotograafpromotiesradboud.nl/404"
+  noindex
+>
+  <section class="mx-auto flex min-h-[60vh] max-w-[1440px] flex-col justify-center px-6 py-24 md:px-16 md:py-32">
+    <span aria-hidden="true" class="mb-6 block h-[3px] w-12 bg-accent-red"></span>
+    <p class="mb-8 font-mono text-xs uppercase tracking-[0.04em] opacity-60">
+      404
+    </p>
+    <h1 class="max-w-4xl text-5xl font-medium leading-[1.05] md:text-6xl lg:text-7xl">
+      Deze pagina bestaat niet.
+    </h1>
+    <p class="mt-8 max-w-2xl text-[17px] leading-[1.55]">
+      De link klopt niet of de pagina is verplaatst. Ga terug naar de homepage of bekijk direct het aanbod.
+    </p>
+    <div class="mt-12 flex flex-col gap-4 sm:flex-row">
+      <a
+        href="/"
+        class="inline-block rounded-[10px] bg-ink px-6 py-3 text-center font-mono text-xs uppercase tracking-[0.06em] text-cream transition-colors duration-200 hover:bg-accent-red-dark"
+      >
+        Terug naar home
+      </a>
+      <a
+        href="/aanbod"
+        class="inline-block rounded-[10px] border border-ink px-6 py-3 text-center font-mono text-xs uppercase tracking-[0.06em] text-ink transition-colors duration-200 hover:border-accent-red-dark hover:bg-accent-red-dark hover:text-cream"
+      >
+        Bekijk aanbod
+      </a>
+    </div>
+  </section>
+</BaseLayout>
