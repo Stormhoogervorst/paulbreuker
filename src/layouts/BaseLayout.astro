@@ -7,8 +7,6 @@ interface Props {
   image?: string;
   canonical?: string;
   noindex?: boolean;
-  lang?: 'nl' | 'en';
-  alternateUrl?: string;
 }
 
 const {
@@ -17,21 +15,11 @@ const {
   image = '/og-default.jpg',
   canonical,
   noindex = false,
-  lang = 'nl',
-  alternateUrl,
 } = Astro.props;
 
 const siteUrl = Astro.site ?? new URL('https://www.fotograafpromotiesradboud.nl');
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
-const currentUrl = canonicalUrl;
-const nlUrl =
-  lang === 'nl'
-    ? currentUrl
-    : alternateUrl
-      ? new URL(alternateUrl, siteUrl).href
-      : undefined;
-const ogLocale = lang === 'nl' ? 'nl_NL' : 'en_US';
 const currentYear = new Date().getFullYear();
 
 const professionalServiceSchema = {
@@ -80,7 +68,7 @@ const isActive = (href: string) => {
 ---
 
 <!doctype html>
-<html lang={lang}>
+<html lang="nl">
   <head>
     <!-- Basis meta -->
     <meta charset="utf-8" />
@@ -90,23 +78,13 @@ const isActive = (href: string) => {
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalUrl} />
 
-    <!-- Hreflang alternates -->
-    {
-      nlUrl && (
-        <>
-          <link rel="alternate" hreflang="nl-NL" href={nlUrl} />
-          <link rel="alternate" hreflang="x-default" href={nlUrl} />
-        </>
-      )
-    }
-
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content={ogLocale} />
+    <meta property="og:locale" content="nl_NL" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />

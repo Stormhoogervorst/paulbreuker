@@ -2,7 +2,7 @@ Dit is fotograafpromotieradboud.nl — een gespecialiseerde website voor
 één dienst: promotiefotografie aan de Radboud Universiteit Nijmegen.
 
 Doelgroep: promovendi (Radboud) die 2-6 maanden voor hun verdediging 
-een fotograaf zoeken. Deel internationaal (NL + EN versie nodig).
+een fotograaf zoeken. De site is volledig Nederlandstalig.
 
 Aanbod: één pakket, €300, 2 uur fotografie, 100 foto's. Geen pakketmatrix.
 
@@ -14,7 +14,7 @@ Tone of voice:
 - "ik", nooit "wij" (één fotograaf)
 - Professioneel, warm, niet stijf
 - Geen marketingtaal of superlatieven
-- Nederlands op alle NL-pagina's, Engels op /en/*
+- Nederlands op alle pagina's
 
 Tech:
 - Astro 4+ met TypeScript strict
@@ -30,7 +30,7 @@ SEO-regels:
 - Eén H1 per pagina, logische H2/H3 hiërarchie
 - Beschrijvende, unieke alt-tekst per foto (geen "IMG_1234")
 - Canonical link per pagina
-- hreflang tags tussen NL en EN versies
+- Geen alternatieve taaltags zolang de site maar één taal heeft
 - Open Graph + Twitter Card met portfolio-foto als og:image
 
 Conversie-regels:
