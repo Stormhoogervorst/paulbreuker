@@ -21,12 +21,10 @@ const serviceSchema = {
     name: 'Nijmegen',
   },
   offers: {
-    '@type': 'AggregateOffer',
-    lowPrice: '270',
-    highPrice: '326.70',
+    '@type': 'Offer',
+    price: '270',
     priceCurrency: 'EUR',
     availability: 'https://schema.org/InStock',
-    offerCount: 2,
   },
 };
 
@@ -66,7 +64,7 @@ const timelineItems = [
 
 <BaseLayout
   title="Aanbod & Tarief | Fotograaf Promotie Radboud"
-  description="Promotiefotografie Radboud Universiteit: vast pakket vanaf €270. 3 uur fotografie, 130 rechtenvrije foto's, levering binnen 1 week. Bekijk het volledige aanbod."
+  description="Promotiefotografie Radboud Universiteit: vast pakket voor €270 incl. btw. 3 uur fotografie, 130 rechtenvrije foto's, levering binnen 1 week."
 >
   <script slot="schema" type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
 
@@ -187,11 +185,10 @@ const timelineItems = [
               </span>
               <div class="flex-1">
                 <p class="text-xl md:text-2xl font-medium leading-tight">
-                  Twee betaalopties
+                  Heldere prijs
                 </p>
                 <p class="mt-3 text-[15px] text-ink/70 leading-relaxed max-w-md">
-                  €270 contant na de receptie. Of €326,70 incl. btw via factuur, per mail na
-                  ontvangst van de foto's.
+                  €270 incl. btw. Je ontvangt de factuur per mail na ontvangst van de foto's.
                 </p>
               </div>
             </li>
@@ -206,8 +203,7 @@ const timelineItems = [
           <p class="text-6xl md:text-7xl font-medium leading-none">€270</p>
 
           <p class="mt-4 text-[15px] text-ink/70">
-            Contant na de receptie. Of €326,70 incl. btw via factuur, per mail na ontvangst van de
-            foto's.
+            Inclusief btw. Je ontvangt de factuur per mail na ontvangst van de foto's.
           </p>
 
           <div class="border-t border-ink/20 my-10"></div>
