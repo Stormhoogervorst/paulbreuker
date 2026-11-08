@@ -21,6 +21,7 @@ const siteUrl = Astro.site ?? new URL('https://www.fotograafpromotiesradboud.nl'
 const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
 const currentYear = new Date().getFullYear();
+const mainSiteUrl = 'https://paulbreuker.nl/';
 
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
@@ -39,6 +40,7 @@ const professionalServiceSchema = {
     '@type': 'Person',
     name: 'Paul Breuker',
     jobTitle: 'Fotograaf',
+    url: mainSiteUrl,
     email: 'info@paulbreuker.nl',
     telephone: '+31651475406',
   },
@@ -48,7 +50,7 @@ const professionalServiceSchema = {
     priceCurrency: 'EUR',
     description: "Vast pakket: 3 uur fotografie, 130 rechtenvrije foto's binnen 1 week, €270 incl. btw",
   },
-  sameAs: [],
+  sameAs: [mainSiteUrl],
 };
 
 const navItems = [
@@ -224,6 +226,17 @@ const isActive = (href: string) => {
               </h3>
               <p class="mt-6 max-w-xs text-[15px] leading-6">
                 Promotiefotografie aan de Radboud Universiteit Nijmegen.
+              </p>
+              <p class="mt-4 max-w-xs text-[15px] leading-6">
+                Zoek je een portret of professionele profielfoto? Kijk op
+                <a
+                  class="underline underline-offset-4 transition hover:opacity-60"
+                  href={mainSiteUrl}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  paulbreuker.nl
+                </a>.
               </p>
             </section>
 
