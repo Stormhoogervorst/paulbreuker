@@ -1,0 +1,55 @@
+---
+import Carousel from './Carousel.astro';
+import type { Lang } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Review {
+  quote: string;
+  name?: string;
+  rating?: number;
+}
+
+interface Props {
+  reviews: Review[];
+  lang?: Lang;
+}
+
+const { reviews, lang = 'nl' } = Astro.props;
+const t = ui[lang].reviews;
+const c = ui[lang].carousel;
+---
+
+<section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+  <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+    <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.eyebrow}</p>
+    <h2 class="ml-auto max-w-4xl text-right text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+      {t.heading}
+    </h2>
+    {t.note && <p class="text-right font-mono text-xs tracking-[0.04em] uppercase opacity-60 lg:col-start-2">{t.note}</p>}
+  </div>
+  <div class="mt-16">
+    <Carousel label={t.carouselLabel} prevLabel={c.prevReviews} nextLabel={c.nextReviews} lang={lang}>
+      {
+        reviews.map(({ quote, name, rating = 5 }, index) => (
+          <li
+            class="w-full shrink-0 snap-start border-t border-ink pt-6 md:w-[calc((100%-2rem)/2)] lg:w-[calc((100%-4rem)/3)]"
+            aria-roledescription={c.slide}
+            aria-label={`${index + 1} ${c.of} ${reviews.length}`}
+          >
+            <div class="flex gap-1 text-accent-red" role="img" aria-label={t.stars(rating)}>
+              {Array.from({ length: rating }).map(() => (
+                <svg aria-hidden="true" viewBox="0 0 20 20" class="h-4 w-4 fill-current">
+                  <path d="M10 1.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L10 14.9l-5.2 2.7 1-5.8L1.5 7.7l5.9-.9L10 1.5z" />
+                </svg>
+              ))}
+            </div>
+            <blockquote class="mt-6 text-[17px] leading-[1.55]">“{quote}”</blockquote>
+            <p class="mt-6 font-mono text-xs tracking-[0.04em] uppercase opacity-60">
+              {name ?? t.fallbackName} · {t.university}
+            </p>
+          </li>
+        ))
+      }
+    </Carousel>
+  </div>
+</section>

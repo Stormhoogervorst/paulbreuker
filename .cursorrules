@@ -2,7 +2,8 @@ Dit is fotograafpromotieradboud.nl — een gespecialiseerde website voor
 één dienst: promotiefotografie aan de Radboud Universiteit Nijmegen.
 
 Doelgroep: promovendi (Radboud) die 2-6 maanden voor hun verdediging 
-een fotograaf zoeken. De site is volledig Nederlandstalig.
+een fotograaf zoeken. De site is tweetalig: Nederlands op de root,
+Engels onder /en/ (voor internationale promovendi en SEO).
 
 Aanbod: één pakket, €270 incl. btw, 2 uur fotografie, 100 foto's. Geen pakketmatrix.
 
@@ -14,7 +15,7 @@ Tone of voice:
 - "ik", nooit "wij" (één fotograaf)
 - Professioneel, warm, niet stijf
 - Geen marketingtaal of superlatieven
-- Nederlands op alle pagina's
+- Nederlands als hoofdtaal; Engels als volwaardige vertaling (zelfde toon, "I")
 
 Tech:
 - Astro 4+ met TypeScript strict
@@ -30,7 +31,7 @@ SEO-regels:
 - Eén H1 per pagina, logische H2/H3 hiërarchie
 - Beschrijvende, unieke alt-tekst per foto (geen "IMG_1234")
 - Canonical link per pagina
-- Geen alternatieve taaltags zolang de site maar één taal heeft
+- hreflang nl/en + x-default (nl) op elke pagina, via BaseLayout `page` prop
 - Open Graph + Twitter Card met portfolio-foto als og:image
 
 Conversie-regels:
@@ -52,6 +53,11 @@ Wat NIET:
 - Geen pop-ups, chatbots, animaties
 - Geen page builder-achtige drukke layouts
 - Geen "wij", geen stockfoto's, geen lorem ipsum bij oplevering
+
+Meertaligheid:
+- Routes per taal in src/i18n/routes.ts; gedeelde teksten in src/i18n/ui.ts
+- Paginateksten in src/i18n/content/*.ts (nl + en, en is getypt als typeof nl)
+- Opmaak één keer in src/views/*Page.astro; src/pages en src/pages/en zijn dunne wrappers
 
 Code-stijl:
 - Components in PascalCase, props typed via TypeScript interface

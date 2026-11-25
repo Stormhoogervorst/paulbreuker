@@ -1,0 +1,284 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Reviews from '../components/Reviews.astro';
+import PhotoCarousel from '../components/PhotoCarousel.astro';
+import { home } from '../i18n/content/home';
+import { ui } from '../i18n/ui';
+import { path, type Lang } from '../i18n/routes';
+import ondertekeningBul from '../assets/portfolio/ondertekening-bul.jpg';
+import promovendaMetBul from '../assets/portfolio/promovenda-met-bul.jpg';
+import promovendusLachend from '../assets/portfolio/promovendus-lachend.jpg';
+import promovendusTrap from '../assets/portfolio/promovendus-trap.jpg';
+import verdedigingAula from '../assets/portfolio/verdediging-aula.jpg';
+import publiekAula from '../assets/portfolio/publiek-aula.jpg';
+import gastenLuisteren from '../assets/portfolio/gasten-luisteren.jpg';
+import zweetkamertje from '../assets/portfolio/zweetkamertje.jpg';
+import knuffel from '../assets/portfolio/knuffel.jpg';
+import shotje from '../assets/portfolio/shotje.jpg';
+import voorbereiding from '../assets/portfolio/voorbereiding.jpg';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = home[lang];
+const cta = ui[lang].cta;
+const contactHref = path('contact', lang);
+
+// Volgorde van de carrousel: nieuwste foto's voorop.
+const featuredWork = [
+  { src: promovendusTrap, alt: t.work.alts.promovendusTrap },
+  { src: promovendaMetBul, alt: t.work.alts.promovendaMetBul },
+  { src: ondertekeningBul, alt: t.work.alts.ondertekeningBul },
+  { src: promovendusLachend, alt: t.work.alts.promovendusLachend },
+  { src: verdedigingAula, alt: t.work.alts.verdedigingAula },
+  { src: publiekAula, alt: t.work.alts.publiekAula },
+  { src: gastenLuisteren, alt: t.work.alts.gastenLuisteren },
+  { src: zweetkamertje, alt: t.work.alts.zweetkamertje },
+  { src: shotje, alt: t.work.alts.shotje },
+];
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  inLanguage: lang,
+  mainEntity: t.faq.items.map((item) => ({
+    '@type': 'Question',
+    name: item.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: item.link ? `${item.answer} ${item.link.label}.` : item.answer,
+    },
+  })),
+};
+---
+
+<BaseLayout
+  title={t.meta.title}
+  description={t.meta.description}
+  image="/og-home.jpg"
+  lang={lang}
+  page="home"
+>
+  <script slot="schema" type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <!-- // SECTIE 1: HERO -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <span aria-hidden="true" class="mb-6 block h-[3px] w-12 bg-accent-red"></span>
+    <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60 mb-12">
+      {t.hero.eyebrow}
+    </p>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16 items-end">
+      <h1 class="md:col-span-8 text-5xl md:text-6xl lg:text-7xl font-medium leading-[1.05]">
+        {t.hero.title}
+      </h1>
+      <p class="md:col-span-4 text-[17px] leading-[1.55] md:pb-3">
+        {t.hero.intro}
+      </p>
+    </div>
+    <div class="mt-12 overflow-hidden rounded-2xl">
+      <Image
+        src={knuffel}
+        alt={t.hero.alt}
+        class="h-full w-full aspect-[16/10] rounded-2xl object-cover"
+        widths={[800, 1200, 1920, 2400]}
+        sizes="100vw"
+        loading="eager"
+        fetchpriority="high"
+      />
+    </div>
+  </section>
+
+  <!-- // SECTIE 2: STATEMENT -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.statement.eyebrow}</p>
+      <div>
+        <h2 class="ml-auto max-w-4xl text-right text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+          {t.statement.title}
+        </h2>
+        <p class="mt-8 ml-auto max-w-3xl text-right text-[17px] leading-[1.55]">
+          {t.statement.body}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- // SECTIE 3: PORTFOLIO TEASER -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="border-t border-ink pt-10">
+      <h2 class="text-right text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+        {t.work.title}
+      </h2>
+    </div>
+    <div class="mt-16">
+      <PhotoCarousel photos={featuredWork} label={t.work.carouselLabel} lang={lang} />
+    </div>
+    <div class="mt-12">
+      <a
+        href={contactHref}
+        class="inline-block border border-ink text-ink font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:bg-accent-red-dark hover:text-cream hover:border-accent-red-dark transition-colors duration-200"
+      >
+        {cta}
+      </a>
+    </div>
+  </section>
+
+  <!-- // SECTIE 4: KORTE INTRODUCTIE -->
+  <section class="border-t border-accent-red py-16 md:py-24">
+    <div class="max-w-[1440px] mx-auto px-6 md:px-16">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-center">
+        <div class="@container md:col-span-5 order-1">
+          <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.about.eyebrow}</p>
+          {
+            t.about.titleLines ? (
+              <h2 class="mt-6 whitespace-nowrap text-[min(10.5cqw,1.5rem)] md:text-[min(10.5cqw,2.25rem)] lg:text-[min(10.5cqw,3rem)] font-medium leading-[1.1] uppercase"
+              >
+                {t.about.titleLines.map((line) => (
+                  <span class="block">{line}</span>
+                ))}
+              </h2>
+            ) : (
+              <h2 class="mt-6 text-2xl md:text-4xl lg:text-5xl font-medium leading-[1.1] uppercase break-words">
+                {t.about.title}
+              </h2>
+            )
+          }
+          <div class="mt-8 space-y-5">
+            {
+              t.about.paragraphs.map((paragraph) => (
+                <p class="text-[15px] md:text-[17px] leading-relaxed">{paragraph}</p>
+              ))
+            }
+          </div>
+          <a
+            href={path('about', lang)}
+            class="mt-8 inline-block border-b border-ink font-mono text-xs tracking-[0.06em] uppercase transition hover:opacity-60"
+          >
+            {t.about.readMore} <span aria-hidden="true" class="text-accent-red">→</span>
+          </a>
+        </div>
+        <div class="md:col-span-7 order-2">
+          <Image
+            src={voorbereiding}
+            alt={t.about.alt}
+            class="w-full aspect-[3/2] object-cover rounded-2xl"
+            widths={[400, 800]}
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- // SECTIE 4B: REVIEWS -->
+  <Reviews reviews={t.reviews} lang={lang} />
+
+  <!-- // SECTIE 5: HOE HET WERKT -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.process.eyebrow}</p>
+      <h2 class="ml-auto max-w-4xl text-right text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+        {t.process.title}
+      </h2>
+    </div>
+    <ol class="mt-16 grid border-y border-ink md:grid-cols-4 md:divide-x md:divide-accent-red">
+      {
+        t.process.steps.map((step, index) => (
+          <li class="py-8 md:px-8">
+            <span class="grid h-9 w-9 place-items-center rounded-full border border-ink font-mono text-[11px] tracking-[0.06em]">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <h3 class="mt-8 text-2xl font-medium uppercase leading-tight break-words">{step.title}</h3>
+            <p class="mt-4 text-[15px] leading-[1.5]">{step.body}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <!-- // SECTIE 7: INVESTERING -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.65fr_0.35fr]">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60 lg:order-2 lg:text-right">{t.pricing.eyebrow}</p>
+      <div class="flex flex-col items-start">
+        <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+          {t.pricing.title}
+        </h2>
+        <p class="mt-8 max-w-2xl text-[17px] leading-[1.55]">
+          {t.pricing.body}
+        </p>
+        <div class="mt-10 inline-flex flex-wrap items-baseline gap-3 border-y border-ink py-6 pr-6 md:pr-12">
+          <span class="text-5xl font-medium leading-none tracking-[-0.02em]">€270</span>
+          <span class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.pricing.priceNote}</span>
+        </div>
+        <a
+          href={path('pricing', lang)}
+          class="mt-10 w-fit border-b border-ink font-mono text-xs tracking-[0.06em] uppercase transition hover:opacity-60"
+        >
+          {t.pricing.link}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- // SECTIE 8: FAQ -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="grid gap-10 border-t border-ink pt-10 lg:grid-cols-[0.35fr_0.65fr]">
+      <p class="font-mono text-xs tracking-[0.04em] uppercase opacity-60">{t.faq.eyebrow}</p>
+      <h2 class="max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+        {t.faq.title}
+      </h2>
+    </div>
+    <div class="mt-16 divide-y divide-ink border-y border-ink">
+      {
+        t.faq.items.map((item) => (
+          <details class="group">
+            <summary class="flex cursor-pointer list-none items-center justify-between gap-8 py-6 text-xl font-medium transition hover:opacity-60 md:text-2xl">
+              {item.question}
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full border border-ink font-mono text-[13px] transition-[transform,color,border-color] duration-200 group-open:rotate-45 group-open:border-accent-red group-open:text-accent-red">
+                +
+              </span>
+            </summary>
+            <p class="max-w-3xl pb-6 text-[17px] leading-[1.55]">
+              {item.answer}
+              {item.link && (
+                <>
+                  {' '}
+                  <a
+                    href={item.link.href}
+                    target="_blank"
+                    rel="noopener"
+                    class="underline underline-offset-4 transition hover:opacity-60"
+                  >
+                    {item.link.label}
+                  </a>.
+                </>
+              )}
+            </p>
+          </details>
+        ))
+      }
+    </div>
+  </section>
+
+  <!-- // SECTIE 9: SLOT -->
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-16 md:py-32">
+    <div class="border-y border-ink py-16 text-center">
+      <h2 class="mx-auto max-w-4xl text-3xl md:text-4xl lg:text-5xl font-medium leading-[1.05] uppercase break-words">
+        {t.closing.title}
+      </h2>
+      <p class="mx-auto mt-8 max-w-xl text-[17px] leading-[1.55]">
+        {t.closing.body}
+      </p>
+      <a
+        href={contactHref}
+        class="mt-10 inline-block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-3 rounded-[10px] hover:bg-accent-red-dark transition-colors duration-200"
+      >
+        {cta}
+      </a>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import { languages, ogLocale, otherLang, path, type Lang, type PageKey } from '../i18n/routes';
+import { ui } from '../i18n/ui';
 
 interface Props {
   title: string;
@@ -7,6 +9,9 @@ interface Props {
   image?: string;
   canonical?: string;
   noindex?: boolean;
+  lang?: Lang;
+  /** Pagina-sleutel; bepaalt canonical, hreflang-alternatieven en de taalwissel. */
+  page?: PageKey;
 }
 
 const {
@@ -15,20 +20,35 @@ const {
   image = '/og-default.jpg',
   canonical,
   noindex = false,
+  lang = 'nl',
+  page,
 } = Astro.props;
 
+const t = ui[lang];
 const siteUrl = Astro.site ?? new URL('https://www.fotograafpromotiesradboud.nl');
-const canonicalUrl = new URL(canonical ?? Astro.url.pathname, siteUrl).href;
+const canonicalUrl = new URL(canonical ?? (page ? path(page, lang) : Astro.url.pathname), siteUrl).href;
 const ogImage = new URL(image, siteUrl).href;
 const currentYear = new Date().getFullYear();
 const mainSiteUrl = 'https://paulbreuker.nl/';
 
+const alternates = page
+  ? languages.map((l) => ({ lang: l, href: new URL(path(page, l), siteUrl).href }))
+  : [];
+const switchLang = otherLang(lang);
+// Taalschakelaar: huidige taal gevuld, andere taal als link naar dezelfde pagina.
+const langOptions = languages.map((l) => ({
+  lang: l,
+  label: l.toUpperCase(),
+  name: t.langSwitch.names[l],
+  href: path(page ?? 'home', l),
+  current: l === lang,
+}));
+
 const professionalServiceSchema = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
-  name: 'Fotograaf Promotie Radboud',
-  description:
-    'Gespecialiseerde fotografie van promoties aan de Radboud Universiteit Nijmegen',
+  name: t.schema.name,
+  description: t.schema.description,
   url: siteUrl.origin,
   image: [ogImage],
   serviceType: 'Promotion photography',
@@ -39,7 +59,7 @@ const professionalServiceSchema = {
   provider: {
     '@type': 'Person',
     name: 'Paul Breuker',
-    jobTitle: 'Fotograaf',
+    jobTitle: t.schema.jobTitle,
     url: mainSiteUrl,
     email: 'info@paulbreuker.nl',
     telephone: '+31651475406',
@@ -48,16 +68,17 @@ const professionalServiceSchema = {
     '@type': 'Offer',
     price: '270',
     priceCurrency: 'EUR',
-    description: "Vast pakket: 3 uur fotografie, 130 rechtenvrije foto's binnen 1 week, €270 incl. btw",
+    description: t.schema.offer,
   },
   sameAs: [mainSiteUrl],
 };
 
 const navItems = [
-  { href: '/aanbod', label: 'Aanbod' },
-  { href: '/over', label: 'Over' },
-  { href: '/contact', label: 'Contact' },
+  { href: path('pricing', lang), label: t.nav.pricing },
+  { href: path('about', lang), label: t.nav.about },
+  { href: path('contact', lang), label: t.nav.contact },
 ];
+const contactHref = path('contact', lang);
 
 // Bepaal welk navigatie-item de huidige pagina is, voor de actieve-state indicator.
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
@@ -68,7 +89,7 @@ const isActive = (href: string) => {
 ---
 
 <!doctype html>
-<html lang="nl">
+<html lang={lang}>
   <head>
     <!-- Basis meta -->
     <meta charset="utf-8" />
@@ -78,13 +99,18 @@ const isActive = (href: string) => {
     {noindex && <meta name="robots" content="noindex, follow" />}
     <link rel="canonical" href={canonicalUrl} />
 
+    <!-- Taalversies -->
+    {alternates.map((alt) => <link rel="alternate" hreflang={alt.lang} href={alt.href} />)}
+    {page && <link rel="alternate" hreflang="x-default" href={new URL(path(page, 'nl'), siteUrl).href} />}
+
     <!-- Open Graph -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonicalUrl} />
-    <meta property="og:locale" content="nl_NL" />
+    <meta property="og:locale" content={ogLocale[lang]} />
+    {page && <meta property="og:locale:alternate" content={ogLocale[switchLang]} />}
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -114,7 +140,7 @@ const isActive = (href: string) => {
     <slot name="header">
       <header class="sticky top-0 z-50 border-b border-ink bg-cream">
         <div class="mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6 md:px-16">
-          <a href="/" class="flex items-center gap-3 font-mono text-[13px] uppercase tracking-[0.06em]">
+          <a href={path('home', lang)} class="flex items-center gap-3 font-mono text-[13px] uppercase tracking-[0.06em]">
             <span class="grid h-9 w-9 grid-cols-2 gap-1" aria-hidden="true">
               <span class="border border-ink"></span>
               <span class="border border-ink"></span>
@@ -124,8 +150,9 @@ const isActive = (href: string) => {
             <span>Paul Breuker</span>
           </a>
 
+          <div class="flex items-center gap-3 md:gap-7">
           <!-- Desktop navigatie -->
-          <nav class="hidden items-center gap-7 font-mono text-[13px] uppercase tracking-[0.04em] md:flex" aria-label="Hoofdnavigatie">
+          <nav class="hidden items-center gap-7 font-mono text-[13px] uppercase tracking-[0.04em] md:flex" aria-label={t.nav.ariaMain}>
             {
               navItems.map((item) => {
                 const active = isActive(item.href);
@@ -146,24 +173,59 @@ const isActive = (href: string) => {
             }
             <a
               class="rounded-[10px] bg-ink px-6 py-3 text-cream transition-colors duration-200 hover:bg-accent-red-dark"
-              href="/contact"
+              href={contactHref}
             >
-              Vraag beschikbaarheid aan
+              {t.cta}
             </a>
           </nav>
+
+          <!-- Taalschakelaar (desktop en mobiel) -->
+            <div
+              role="group"
+              aria-label={t.langSwitch.group}
+              class="flex h-11 items-center rounded-full border border-ink p-1 font-mono text-[12px] tracking-[0.06em]"
+            >
+              {
+                langOptions.map((option) =>
+                  option.current ? (
+                    <span
+                      aria-current="true"
+                      title={option.name}
+                      class="grid h-full place-items-center rounded-full bg-ink px-3 text-cream"
+                    >
+                      {option.label}
+                    </span>
+                  ) : (
+                    <a
+                      href={option.href}
+                      hreflang={option.lang}
+                      lang={option.lang}
+                      aria-label={option.name}
+                      title={option.name}
+                      class="grid h-full place-items-center rounded-full px-3 transition-colors duration-200 hover:text-accent-red"
+                    >
+                      {option.label}
+                    </a>
+                  ),
+                )
+              }
+            </div>
 
           <!-- Mobile menu trigger -->
           <button
             type="button"
             id="mobile-menu-toggle"
-            aria-label="Menu openen"
+            aria-label={t.menu.ariaOpen}
+            data-label-open={t.menu.ariaOpen}
+            data-label-close={t.menu.ariaClose}
             aria-controls="mobile-menu"
             aria-expanded="false"
             class="md:hidden w-11 h-11 border border-ink rounded-full flex items-center justify-center font-mono text-xs tracking-[0.04em] uppercase hover:bg-accent-red-dark hover:text-cream hover:border-accent-red-dark transition-colors duration-200"
           >
-            <span class="menu-text-open">Menu</span>
-            <span class="menu-text-close hidden">Sluit</span>
+            <span class="menu-text-open">{t.menu.open}</span>
+            <span class="menu-text-close hidden">{t.menu.close}</span>
           </button>
+          </div>
         </div>
       </header>
 
@@ -173,7 +235,7 @@ const isActive = (href: string) => {
         class="hidden md:hidden fixed inset-x-0 top-20 bottom-0 bg-cream z-40 overflow-y-auto"
         role="dialog"
         aria-modal="true"
-        aria-label="Hoofdnavigatie"
+        aria-label={t.nav.ariaMain}
       >
         <nav class="flex flex-col px-6 pt-8 pb-4">
           {
@@ -201,10 +263,10 @@ const isActive = (href: string) => {
         <!-- Footer area in drawer -->
         <div class="px-6 py-6 border-t border-ink/10 mt-4">
           <a
-            href="/contact"
+            href={contactHref}
             class="block bg-ink text-cream font-mono text-xs tracking-[0.06em] uppercase px-6 py-4 rounded-[10px] text-center hover:bg-accent-red-dark transition-colors duration-200"
           >
-            Vraag beschikbaarheid aan
+            {t.cta}
           </a>
         </div>
       </div>
@@ -222,13 +284,13 @@ const isActive = (href: string) => {
           <div class="grid gap-10 md:grid-cols-3 md:divide-x md:divide-ink">
             <section>
               <h3 class="text-2xl font-medium uppercase leading-none tracking-tight">
-                Promotie<br />Radboud
+                {t.footer.title[0]}<br />{t.footer.title[1]}
               </h3>
               <p class="mt-6 max-w-xs text-[15px] leading-6">
-                Promotiefotografie aan de Radboud Universiteit Nijmegen.
+                {t.footer.tagline}
               </p>
               <p class="mt-4 max-w-xs text-[15px] leading-6">
-                Zoek je een portret of professionele profielfoto? Kijk op
+                {t.footer.portraitBefore}
                 <a
                   class="underline underline-offset-4 transition hover:opacity-60"
                   href={mainSiteUrl}
@@ -241,7 +303,7 @@ const isActive = (href: string) => {
             </section>
 
             <section class="md:pl-10">
-              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Pagina's</h3>
+              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">{t.footer.pages}</h3>
               <ul class="mt-5 space-y-3 font-mono text-[13px] uppercase tracking-[0.04em]">
                 {
                   navItems.map((item) => (
@@ -256,7 +318,7 @@ const isActive = (href: string) => {
             </section>
 
             <section class="md:pl-10">
-              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">Contact</h3>
+              <h3 class="font-mono text-[13px] uppercase tracking-[0.06em]">{t.footer.contact}</h3>
               <ul class="mt-5 space-y-3 text-[15px] leading-6">
                 <li>
                   <a class="transition hover:opacity-60" href="mailto:info@paulbreuker.nl">
@@ -276,9 +338,9 @@ const isActive = (href: string) => {
           <div
             class="mt-16 border-t border-ink pt-6 font-mono text-[11px] uppercase tracking-[0.06em] md:grid md:grid-cols-2"
           >
-            <p>&copy; {currentYear} Fotograaf Promotie Radboud</p>
+            <p>&copy; {currentYear} {t.footer.copyright}</p>
             <p class="mt-2 md:mt-0 md:text-right">
-              Nijmegen · Radboud Universiteit · Website door
+              {t.footer.bottomLine}
               <a
                 class="underline transition hover:opacity-60"
                 href="https://neqst.nl/"
@@ -303,7 +365,10 @@ const isActive = (href: string) => {
 
         function setMenu(open) {
           toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          toggle.setAttribute('aria-label', open ? 'Menu sluiten' : 'Menu openen');
+          toggle.setAttribute(
+            'aria-label',
+            open ? toggle.dataset.labelClose : toggle.dataset.labelOpen,
+          );
 
           if (open) {
             menu.classList.remove('hidden');
