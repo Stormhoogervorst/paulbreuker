@@ -1,0 +1,131 @@
+---
+import type { Lang } from '../i18n/routes';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  label: string;
+  prevLabel: string;
+  nextLabel: string;
+  lang?: Lang;
+}
+
+const { label, prevLabel, nextLabel, lang = 'nl' } = Astro.props;
+---
+
+<!--
+  Generieke carrousel. Geef <li>-elementen mee als slot; elk <li> bepaalt zelf
+  zijn breedte (bijv. w-full md:w-[calc((100%-2rem)/2)]) en moet shrink-0 snap-start hebben.
+-->
+<div data-carousel role="region" aria-roledescription={ui[lang].carousel.roledescription} aria-label={label}>
+  <ul
+    data-track
+    class="flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-smooth [scrollbar-width:none] md:gap-8 [&::-webkit-scrollbar]:hidden"
+  >
+    <slot />
+  </ul>
+  <div class="mt-6 flex items-center justify-between gap-6">
+    <p data-status class="font-mono text-xs tracking-[0.04em] uppercase opacity-60" aria-live="polite"></p>
+    <div class="flex gap-3">
+      <button
+        type="button"
+        data-prev
+        aria-label={prevLabel}
+        class="grid h-11 w-11 place-items-center rounded-full border border-ink font-mono text-[13px] transition-colors duration-200 hover:border-accent-red hover:text-accent-red disabled:pointer-events-none disabled:opacity-30"
+      >
+        <span aria-hidden="true">←</span>
+      </button>
+      <button
+        type="button"
+        data-next
+        aria-label={nextLabel}
+        class="grid h-11 w-11 place-items-center rounded-full border border-ink font-mono text-[13px] transition-colors duration-200 hover:border-accent-red hover:text-accent-red disabled:pointer-events-none disabled:opacity-30"
+      >
+        <span aria-hidden="true">→</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Oneindige carrousel: de dia's worden aan beide kanten gekloond. Komt de carrousel
+  // in een kloon tot stilstand, dan springt hij onzichtbaar naar dezelfde echte dia.
+  for (const carousel of document.querySelectorAll<HTMLElement>('[data-carousel]')) {
+    const track = carousel.querySelector<HTMLElement>('[data-track]')!;
+    const prev = carousel.querySelector<HTMLButtonElement>('[data-prev]')!;
+    const next = carousel.querySelector<HTMLButtonElement>('[data-next]')!;
+    const status = carousel.querySelector<HTMLElement>('[data-status]')!;
+    const originals = Array.from(track.children) as HTMLElement[];
+    const count = originals.length;
+
+    if (count < 2) {
+      prev.hidden = true;
+      next.hidden = true;
+      continue;
+    }
+
+    const makeClone = (slide: HTMLElement) => {
+      const clone = slide.cloneNode(true) as HTMLElement;
+      clone.setAttribute('aria-hidden', 'true');
+      clone.inert = true;
+      clone.querySelectorAll('img').forEach((img) => (img.loading = 'lazy'));
+      return clone;
+    };
+    track.prepend(...originals.map(makeClone));
+    track.append(...originals.map(makeClone));
+    const slides = Array.from(track.children) as HTMLElement[];
+
+    const slideStep = () => slides[1].offsetLeft - slides[0].offsetLeft;
+    const perView = () => Math.max(1, Math.round(track.clientWidth / slideStep()));
+    const offsetOf = (i: number) => slides[i].offsetLeft - slides[0].offsetLeft;
+
+    let index = count;
+
+    const update = () => {
+      const first = (((index - count) % count) + count) % count;
+      const last = (first + perView() - 1) % count;
+      status.textContent =
+        perView() === 1 ? `${first + 1} / ${count}` : `${first + 1}–${last + 1} / ${count}`;
+    };
+
+    const jump = (target: number) => {
+      index = target;
+      track.style.scrollBehavior = 'auto';
+      track.scrollLeft = offsetOf(index);
+      track.style.scrollBehavior = '';
+      update();
+    };
+
+    const goTo = (target: number) => {
+      index = Math.min(Math.max(target, 0), slides.length - perView());
+      track.scrollTo({ left: offsetOf(index) });
+      update();
+    };
+
+    // Terug naar het echte middenstuk zodra de carrousel stilstaat in een kloon.
+    const settle = () => {
+      index = Math.round(track.scrollLeft / slideStep());
+      if (index < count) jump(index + count);
+      else if (index >= count * 2) jump(index - count);
+      else update();
+    };
+
+    prev.addEventListener('click', () => goTo(index - perView()));
+    next.addEventListener('click', () => goTo(index + perView()));
+
+    if ('onscrollend' in window) {
+      track.addEventListener('scrollend', settle);
+    } else {
+      let timer: number | undefined;
+      track.addEventListener(
+        'scroll',
+        () => {
+          clearTimeout(timer);
+          timer = window.setTimeout(settle, 150);
+        },
+        { passive: true },
+      );
+    }
+    window.addEventListener('resize', () => jump(index));
+    jump(count);
+  }
+</script>
