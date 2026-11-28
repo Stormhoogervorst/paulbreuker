@@ -101,6 +101,14 @@ const labelClass = 'mb-2 block font-mono text-xs tracking-[0.04em] uppercase opa
             ></textarea>
           </div>
 
+          <!-- Spambeveiliging: hCaptcha via Web3Forms (gratis plan). Web3Forms controleert de token server-side. -->
+          <div>
+            <div class="h-captcha" data-captcha="true" data-lang={lang}></div>
+            <p id="captcha-error" class="hidden mt-3 text-sm text-accent-red" role="alert">
+              {t.form.captchaMissing}
+            </p>
+          </div>
+
           <button
             type="submit"
             class="mt-4 inline-block rounded-[10px] bg-ink px-6 py-3 font-mono text-xs tracking-[0.06em] text-cream uppercase transition-colors duration-200 hover:bg-accent-red-dark disabled:cursor-not-allowed disabled:opacity-60"
@@ -183,11 +191,22 @@ const labelClass = 'mb-2 block font-mono text-xs tracking-[0.04em] uppercase opa
     const successBox = document.getElementById('form-success');
     const errorBox = document.getElementById('form-error');
 
+    const captchaError = document.getElementById('captcha-error');
+    const resetCaptcha = () => {
+      const hcaptcha = (window as unknown as { hcaptcha?: { reset: () => void } }).hcaptcha;
+      hcaptcha?.reset();
+    };
+
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
       errorBox?.classList.add('hidden');
+      captchaError?.classList.add('hidden');
 
       const formData = new FormData(form);
+      if (!String(formData.get('h-captcha-response') ?? '').trim()) {
+        captchaError?.classList.remove('hidden');
+        return;
+      }
       const payload = Object.fromEntries(formData);
       const submitButton = form.querySelector<HTMLButtonElement>('button[type="submit"]');
       const originalText = submitButton?.textContent ?? '';
@@ -217,6 +236,7 @@ const labelClass = 'mb-2 block font-mono text-xs tracking-[0.04em] uppercase opa
         successBox?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch {
         errorBox?.classList.remove('hidden');
+        resetCaptcha();
 
         if (submitButton) {
           submitButton.disabled = false;
@@ -225,6 +245,8 @@ const labelClass = 'mb-2 block font-mono text-xs tracking-[0.04em] uppercase opa
       }
     });
   </script>
+
+  <script is:inline src="https://web3forms.com/client/script.js" async defer></script>
 
   <!-- SECTIE 3: KORTE GERUSTSTELLING ONDERAAN -->
   <section class="mx-auto max-w-[1440px] px-6 py-20 md:px-16 md:py-24">
